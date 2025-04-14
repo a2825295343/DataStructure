@@ -1,18 +1,5 @@
-//#include <stdlib.h>
 #include "结构、常量定义及函数声明.h"
-//#define ERROR 0         //错误标志
-//#define OK 1            //成功标志
-//typedef int ElemType;    //线性表数据类型
-//
-//#define LIST_INIT_SIZE  12	             // 线性表存储空间的初始分配量
-//#define LISTINCREMENT  4		// 线性表存储空间的分配增量
-//
-//typedef struct
-//{
-//	ElemType* data;	        // 存储空间基址
-//	int length;		        // 顺序表当前长度
-//	int listsize;	       // 当前分配的存储容量(以sizeof(ListData)为单位)
-//}SqList;
+
 //1、初始化表L为空表
 int InitList2(SqList& L)
 {                                	// 分配指定大小的存储空间给顺序表

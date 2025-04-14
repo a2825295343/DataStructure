@@ -1,12 +1,3 @@
-//#define ListSize 100    //最大允许长度
-//#define ERROR 0         //错误标志
-//#define OK 1            //成功标志
-//typedef int ElemType;    //线性表数据类型
-//
-//typedef struct {
-//    ElemType data[ListSize];    //存储空间
-//    int length;         //当前元素个数
-//} SeqList;
 #include "结构、常量定义及函数声明.h"
 
 //1、初始化表L为空表
