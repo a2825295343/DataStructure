@@ -15,10 +15,22 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="线性表.cpp">
+    <ClCompile Include="1、静态存储线性表.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="2、动态存储顺序表.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Test.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="结构、常量定义及函数声明.h">
+      <Filter>头文件</Filter>
+    </ClCompile>
+    <ClCompile Include="4、带头结点的单链表.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="3、不带头结点的单链表.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

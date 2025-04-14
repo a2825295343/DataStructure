@@ -127,8 +127,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="2、动态存储顺序表.cpp" />
+    <ClCompile Include="1、静态存储线性表.cpp" />
+    <ClCompile Include="3、不带头结点的单链表.cpp" />
+    <ClCompile Include="4、带头结点的单链表.cpp" />
+    <ClCompile Include="结构、常量定义及函数声明.h" />
     <ClCompile Include="Test.cpp" />
-    <ClCompile Include="线性表.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
