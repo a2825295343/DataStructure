@@ -31,9 +31,9 @@ void clear4(LinkList& first) {      // ½«±íÖØÖÃÎª¿Õ±í
 }
 
 //4¡¢ÅĞ¶ÏÁ´±íÊÇ·ñÎª¿Õ
-int  ListEmpty4(LinkList first)
+int ListEmpty4(LinkList first)
 {                        //Èô´øÍ·½áµãµ¥Á´±ífirstÎª¿Õ·µ»Ø1,·ñÔò·µ»Ø0
-    return  !(first->next);
+    return !(first->next);
 }
 
 //5¡¢ÇóÁ´±íµÄ³¤¶È
@@ -110,7 +110,7 @@ LinkList PriorElem4(LinkList first, ElemType x) { //º¯Êı·µ»Ø´øÍ·½áµãµ¥Á´±ífirstÖ
 }
 
 //12¡¢ÔÚµÚ i ¸öÔªËØ½áµãÇ°²åÈëÔªËØ x
-int ListInsert4(LinkList first, int i, ElemType x) {
+Status ListInsert4(LinkList first, int i, ElemType x) {
     //ÔÚ´øÍ·½ÚµãµÄµ¥Á´±ífirstÖĞµÚ i ¸öÔªËØ½áµãÇ°²åÈëÔªËØ x£¬³É¹¦·µ»ØOK·ñÔò·µ»ØERROR
     LNode* p = first;   int k = 0;
     while (p && k < i - 1)
@@ -123,13 +123,13 @@ int ListInsert4(LinkList first, int i, ElemType x) {
     }                                                 //²ÎÊıiÖµ²»ºÏÀí·µ»ØERROR
     LNode* newnode = (LNode*)malloc(sizeof(LNode));       //´´½¨ĞÂ½áµã
     newnode->data = x;
-    newnode->next = p->next;                                   //²åÈëĞÂ½áµã
+    newnode->next = p->next;                           //²åÈëĞÂ½áµã
     p->next = newnode;
     return OK;
 }
 
 //13¡¢É¾µÚ i ¸öÔªËØ£¬³É¹¦·µ»ØOK·ñÔò·µ»ØERROR
-int ListDelete4(LinkList first, int i) {
+Status ListDelete4(LinkList first, int i) {
     //É¾³ı´øÍ·½Úµãµ¥Á´±ífirstµÄµÚ i ¸öÔªËØ£¬³É¹¦·µ»ØOK·ñÔò·µ»ØERROR
     LinkList q;
         LNode* p = first; int k = 0;
@@ -142,8 +142,23 @@ int ListDelete4(LinkList first, int i) {
     return OK;
 }
 
-//14¡¢´´½¨´øÍ·½áµãµ¥Á´±í£¬ÓÃ»§ÊäÈëÊı¾İ£¬´ÓµÚÒ»¸ö¿ªÊ¼Íùºó¼Ó,Ã¿¸öÊı¾İÖ®¼äÓÃ¿Õ¸ñ¸ô¿ª£¬»Ø³µ½áÊø
+//14¡¢Í·²å·¨´´½¨´øÍ·½áµãµ¥Á´±í£¬ĞÂÔöµÄÔªËØ²åÈëµ½Í·²¿£¬¼´°´ÓÃ»§ÊäÈëÊı¾İµÄÏà·´Ë³Ğò´æ´¢£¬ÒÔ¿Õ¸ñ·Ö¸ô£¬»Ø³µ½áÊø
 LinkList createListF4(void) {
+    //µ¥Á´±íµÄÍ·Ö¸Õë
+    LNode* first = (LinkList)malloc(sizeof(LNode)); //½¨Á¢±íÍ·½áµã
+    first->next = NULL;
+    char ch;
+    while (( ch = getchar()) != '\n') {
+        LNode* q = (LNode*)malloc(sizeof(LNode));
+        q->data = ch;                          //½¨Á¢ĞÂ½áµã
+        q->next = first->next;                  //²åÈëµ½±íÇ°¶Ë
+        first->next = q;
+    }
+    return first;
+}
+
+//15¡¢Î²²å·¨´´½¨´øÍ·½áµãµ¥Á´±í£¬ĞÂÔöµÄÔªËØ²åÈëµ½Î²²¿£¬¼´°´ÓÃ»§ÊäÈëÊı¾İµÄË³Ğò´æ´¢£¬ÒÔ¿Õ¸ñ·Ö¸ô£¬»Ø³µ½áÊø
+LinkList createListR4(void) {//´´½¨´øÍ·½áµãµ¥Á´±í£¬º¯Êı·µ»Ø
     //´´½¨´øÍ·½áµãµ¥Á´±í£¬º¯Êı·µ»Ø
     LNode* first = (LinkList)malloc(sizeof(LNode)); //µ¥Á´±íµÄÍ·Ö¸Õë
     LNode* r = first;                               //½¨Á¢±íÍ·½áµã£¬r Ö¸Ïò±íÎ²
@@ -155,21 +170,7 @@ LinkList createListF4(void) {
     }
     r->next = NULL;
     return first;
-}
-
-//15¡¢´´½¨´øÍ·½áµãµ¥Á´±í£¬ÓÃ»§ÊäÈëÊı¾İ£¬´Ó×îºóÒ»¸ö¿ªÊ¼ÍùÇ°¼Ó,Ã¿¸öÊı¾İÖ®¼äÓÃ¿Õ¸ñ¸ô¿ª£¬»Ø³µ½áÊø
-LinkList createListR4(void) {//´´½¨´øÍ·½áµãµ¥Á´±í£¬º¯Êı·µ»Ø
-    //µ¥Á´±íµÄÍ·Ö¸Õë
-    LNode* first = (LinkList)malloc(sizeof(LNode)); //½¨Á¢±íÍ·½áµã
-    first->next = NULL;
-    char ch;
-    while (( ch = getchar()) != '\n') {
-        LNode* q = (LNode*)malloc(sizeof(LNode));
-        q->data = ch;                          //½¨Á¢ĞÂ½áµã
-        q->next = first->next;                    //²åÈëµ½±íÇ°¶Ë
-        first->next = q;
-    }
-    return first;
+    
 }
 
 //´òÓ¡´øÍ·½áµãµ¥Á´±ífirst

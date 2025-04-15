@@ -1,7 +1,9 @@
 #include "结构、常量定义及函数声明.h"
 
+void visit(ElemType e) { printf("%d\n", e); }
+
 int main() {
-	//------------------1、静态存储线性表------------------
+	//-------------------------1、静态存储线性表-------------------------
 	SeqList L1;
     InitList1(L1);
     ListInsert1(L1, 1, 11);
@@ -9,7 +11,7 @@ int main() {
 	ListInsert1(L1, 3, 31);
 
     printList1(L1);
-	//------------------2、动态存储线性表------------------
+	//-------------------------2、动态存储线性表-------------------------
     SqList L2;
     InitList2(L2);
     ListInsert2(L2, 1, 12);
@@ -26,7 +28,7 @@ int main() {
     printList2(L2);
     printList2(L22);
 
-    //------------------3、不带头结点的单链表------------------
+    //------------------------3、不带头结点的单链表------------------------
 	LinkList L3;
     InitList3(L3);
 	ListInsert3(L3, 1, 13);
@@ -35,7 +37,7 @@ int main() {
 
 	printList3(L3);
 
-    //------------------4、带头结点的单链表------------------
+    //-------------------------4、带头结点的单链表-------------------------
 	LinkList L4;
     InitList4(L4);
     ListInsert4(L4, 1, 14);
@@ -44,6 +46,33 @@ int main() {
 
     printList4(L4);
 
+    //----------------------------5、静态链表----------------------------
+    SLinkList L5;
+	InitList5(L5);
+	ListInsert5(L5, 1, 15);
+	ListInsert5(L5, 2, 25);
+	ListInsert5(L5, 3, 35);
 
+	ListTraverse5(L5, visit);
+
+    //------------------6、带头结点的使用尾指针的单循环链表------------------
+	LinkList L6;
+	InitList6(L6);
+	ListInsert6(L6, 1, 16);
+	ListInsert6(L6, 2, 26);
+	ListInsert6(L6, 3, 36);
+
+	ListTraverse6(L6, visit);
+
+    //------------------------7、带头结点的双向链表------------------------
+	DuLinkList L7;
+	InitList7(L7);
+	ListInsertF7(L7, 1, 17);
+	ListInsertF7(L7, 2, 27);
+	ListInsertF7(L7, 3, 37);
+    ListInsertR7(L7, 3, 47);
+    ListInsertR7(L7, 4, 57);
+
+	printList7(L7);
     return 0;
 }

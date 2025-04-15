@@ -1,7 +1,7 @@
 #include "结构、常量定义及函数声明.h"
 
 //1、初始化表L为空表
-int InitList2(SqList& L)
+Status InitList2(SqList& L)
 {                                	// 分配指定大小的存储空间给顺序表
 	L.data = (ElemType*)malloc(LIST_INIT_SIZE * sizeof(ElemType));   //分配存储单元
 	if (!L.data)             // 存储分配失败
@@ -12,7 +12,7 @@ int InitList2(SqList& L)
 }
 
 //2、回收顺序线性表L，将顺序表结构体中的所有成员销毁（空间释放， 数值置0）
-int DestroyList2(SqList& L)
+Status DestroyList2(SqList& L)
 {                    	// 先释放空间，然后置空
 	free(L.data);
 	L.length = 0;
@@ -21,7 +21,7 @@ int DestroyList2(SqList& L)
 }
 
 //3、清空线性表L
-int ClearList2(SqList& L)
+Status ClearList2(SqList& L)
 {                   //清空线性表L
 	L.length = 0;
 	return OK;
@@ -34,7 +34,7 @@ int ListEmpty2(SqList L)
 }
 
 //5、求表L的长度
-int  ListLength2(SqList L)
+int ListLength2(SqList L)
 {
 	// L.length记录当前顺序表的长度，直接返回
 	return (L.length);
@@ -68,12 +68,12 @@ int IsIn2(SqList L, ElemType x) {  //判断x是否在表L中
 }
 
 //9、在表L中求x的直接后继
-int  NextElem2(SqList L, ElemType x) { //如果x在表L中且
-	//有直接后继，函数值返回其直接后继的位置，否则返回ERROR
+int NextElem2(SqList L, ElemType x) { //如果x在表L中且
+	//有直接后继，函数值返回其直接后继的位置，否则返回-1
 	int i = 0;
 	while ((i < L.length) && (*(L.data + i) != x)) i++;    //查找x
 	if ((0 <= i) && (i < L.length - 1)) return i + 1;
-	else return ERROR;
+	else return -1;
 }
 
 //10、在表L中求x的直接前驱
@@ -82,11 +82,11 @@ int PriorElem2(SqList L, ElemType x) {   //如果x在表L中且
 	int i = 0;
 	while (i < L.length && *(L.data + i) != x) i++;          //查找x 
 	if ((0 < i) && (i < L.length)) return i - 1;
-	else return ERROR;
+	else return -1;
 }
 
 //11、在线性表L中第i个元素前插入e
-int ListInsert2(SqList& L, int i, ElemType e)
+Status ListInsert2(SqList& L, int i, ElemType e)
 {
 	ElemType* newbase, * q, * p;
 	if ((i < 1) || (i > L.length + 1)) return ERROR;          //输入的i不合法
@@ -103,7 +103,7 @@ int ListInsert2(SqList& L, int i, ElemType e)
 }
 
 //12、在顺序表L中删除第i个元素
-int ListDelete2(SqList& L, int i)
+Status ListDelete2(SqList& L, int i)
 {
 	ElemType* p, * q;
 	if (i < 1 || i > L.length)  return ERROR;          // i值不合法

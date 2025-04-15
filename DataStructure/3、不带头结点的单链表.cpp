@@ -98,7 +98,7 @@ LinkList PriorElem3(LinkList first, ElemType x)
 }
 
 //11、在第 i 个元素结点前插入元素 x
-int ListInsert3(LinkList& first, int i, ElemType x) {
+Status ListInsert3(LinkList& first, int i, ElemType x) {
     //在单链表first中第 i 个元素结点前插入元素 x，成功返回1否则返回0
     LNode* newnode = (LNode*)malloc(sizeof(LNode));
     newnode->data = x;                                  //创建新结点
@@ -123,7 +123,7 @@ int ListInsert3(LinkList& first, int i, ElemType x) {
     }
 
 //12、删除第 i 个元素，成功返回OK否则返回ERROR
-int ListDelete3(LinkList& first, int i) {
+Status ListDelete3(LinkList& first, int i) {
     LNode* q;
     //在单链表first中删除第 i 个结点，删除成功返回1否则返回0
     if (first && i == 1)                        //删除表中第 1 个结点

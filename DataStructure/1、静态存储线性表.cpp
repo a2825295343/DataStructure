@@ -41,16 +41,16 @@ int LocateELem1(SeqList L, ElemType e)
 {                                                  
     for (int i = 0; i < L.length; i++)
         if (L.data[i] == e) return i + 1;
-    return ERROR;
+    return -1;
 }
 
 //8、判断x是否在表L中
 int IsIn1(SeqList L, ElemType x) {  
     //x在L中返回OK，否则返回ERROR
-    int  i = 0, found = ERROR;
+    int  i = 0, found = 0;
     while ((i < L.length) && !found)
         if (L.data[i] != x) i++;
-        else found = OK;
+        else found = 1;
     return found;
 }
 
@@ -60,7 +60,7 @@ int NextElem1(SeqList L, ElemType x) { //如果x在表L中且
     int i = 0;
     while ((i < L.length) && (L.data[i] != x)) i++;    //查找x
     if ((0 <= i) && (i < L.length - 1)) return i + 1;
-    else return ERROR;
+    else return -1;
 }
 
 //10、求表L中元素x的直接前驱
@@ -69,11 +69,11 @@ int PriorElem1(SeqList L, ElemType x) {   //如果x在表L中且
     int i = 0;
     while (i < L.length && L.data[i] != x) i++;          //查找x 
     if ((0 < i) && (i < L.length)) return i - 1;     //返回位置 
-    else return ERROR;
+    else return -1;
 }
 
 //11、在顺序表L中第 i 个元素前插入 x,插入成功返回OK，不成功 返回ERROR
-int ListInsert1(SeqList& L, int i, ElemType x) {  //在顺序表L中
+Status ListInsert1(SeqList& L, int i, ElemType x) {  //在顺序表L中
     //第 i 个元素前插入 x,插入成功返回OK，不成功 返回ERROR
     if ((i < 1) || (i > L.length + 1) || (L.length == ListSize))
         return ERROR;                           //插入不成功	
@@ -85,7 +85,7 @@ int ListInsert1(SeqList& L, int i, ElemType x) {  //在顺序表L中
 }
 
 //12、在顺序表L中删除第 i 个元素,成功返回OK，否则返回ERROR
-int ListDelete1(SeqList& L, int  i) {//在顺序表L中删除第i个元素,
+Status ListDelete1(SeqList& L, int  i) {//在顺序表L中删除第i个元素,
     //成功返回OK，否则返回ERROR
     if ((i < 1) || (i > L.length)) return ERROR;
     L.length--;
