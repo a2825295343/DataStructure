@@ -13,7 +13,7 @@
 #define FALSE 0
 
 typedef int ElemType;   //线性表数据类型，可修改
-typedef int SElemType; //栈与队列数据类型，可修改
+typedef int SElemType;  //栈与队列数据类型，可修改
 typedef int Status;     //状态返回值类型，可修改，与常量ERROR、OK、TRUE、FALSE绑定
 
 //1、静态存储顺序表结构定义
