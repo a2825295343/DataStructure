@@ -134,6 +134,7 @@
     <ClCompile Include="5、静态链表.cpp" />
     <ClCompile Include="6、带头结点的使用尾指针的单循环链表.cpp" />
     <ClCompile Include="7、带头结点的双向链表.cpp" />
+    <ClCompile Include="8、带头结点的双向循环链表.cpp" />
     <ClCompile Include="结构、常量定义及函数声明.h" />
     <ClCompile Include="Test.cpp" />
   </ItemGroup>

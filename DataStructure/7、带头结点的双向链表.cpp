@@ -43,7 +43,7 @@ int ListLength7(DuLinkList L) {
 }
 
 //5、获取链表L中第i个元素，返回指针
-DuLinkList GetElem7(DuLinkList L, int i) {
+DuLinkList GetElemP7(DuLinkList L, int i) {
     DuLinkList p;
     int j;
     p = L->next;  j = 1;
@@ -81,7 +81,7 @@ Status ListInsertR7(DuLinkList L, int i, ElemType e)
     DuLinkList p, s;
     if (i<1 || i>ListLength7(L) + 1)
         return ERROR;
-    p = GetElem7(L, i);
+    p = GetElemP7(L, i);
     if (!p)
         return ERROR;
     s = (DuLinkList)malloc(sizeof(DuLNode));
@@ -101,7 +101,7 @@ Status ListDelete7(DuLinkList L, int i, ElemType& e)
     DuLinkList p;
     if (i < 1)
         return ERROR;
-    p = GetElem7(L, i);
+    p = GetElemP7(L, i);
     if (!p)
         return ERROR;
     e = p->data;

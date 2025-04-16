@@ -48,5 +48,8 @@
     <ClCompile Include="7、带头结点的双向链表.cpp">
       <Filter>源文件\一、线性表</Filter>
     </ClCompile>
+    <ClCompile Include="8、带头结点的双向循环链表.cpp">
+      <Filter>源文件\一、线性表</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

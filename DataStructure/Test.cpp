@@ -2,6 +2,10 @@
 
 void visit(ElemType e) { printf("%d\n", e); }
 
+Status compare(ElemType a, ElemType b) { //比较函数，比较规则可以自定义
+	return a == b;
+}
+
 int main() {
 	//-------------------------1、静态存储线性表-------------------------
 	SeqList L1;
@@ -74,5 +78,18 @@ int main() {
     ListInsertR7(L7, 4, 57);
 
 	printList7(L7);
+
+    //----------------------8、带头结点的双向循环链表----------------------
+	DuLinkList L8;
+	InitList8(L8);
+	ListInsertF8(L8, 1, 18);
+	ListInsertF8(L8, 2, 28);
+	ListInsertF8(L8, 3, 38);
+	ListInsertR8(L8, 3, 48);
+	ListInsertR8(L8, 4, 58);
+
+	ListTraverse8(L8, visit);
+	ListTraverseBack8(L8, visit);
+
     return 0;
 }

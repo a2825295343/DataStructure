@@ -39,7 +39,7 @@ typedef struct
     int cur; // 游标域 
 }component, SLinkList[MAX_SIZE];
 
-//7、双向链表结构定义
+//7-8、双向链表结构定义
 typedef struct DuLNode
 {
     ElemType data;
@@ -144,12 +144,31 @@ void InitList7(DuLinkList& L);        //1、初始化带头结点的双向链表L
 void DestroyList7(DuLinkList& L);     //2、销毁带头结点的双向链表
 void ClearList7(DuLinkList& L);       //3、清空带头结点的双向链表
 int ListLength7(DuLinkList L);        //4、求带头结点的双向链表的长度
-DuLinkList GetElem7(DuLinkList L, int i);               //5、获取第i个元素，返回指针
+DuLinkList GetElemP7(DuLinkList L, int i);               //5、获取第i个元素，返回指针
 Status ListInsertF7(DuLinkList L, int i, ElemType e);   //6、在第 i 个元素结点前插入元素 e
 Status ListInsertR7(DuLinkList L, int i, ElemType e);   //7、在第 i 个元素结点后插入元素 e
 Status ListDelete7(DuLinkList L, int i, ElemType& e);   //8、在带头结点的双向链表L中删除第 i 个元素
 
+//8、带头结点的双向循环链表函数声明，共15个
+void InitList8(DuLinkList& L);
+void DestroyList8(DuLinkList& L);
+void ClearList8(DuLinkList L);
+Status ListEmpty8(DuLinkList L);
+int ListLength8(DuLinkList L);
+Status GetElem8(DuLinkList L, int i, ElemType& e);
+int LocateElem8(DuLinkList L, ElemType e, Status(*compare)(ElemType, ElemType));
+Status NextElem8(DuLinkList L, ElemType cur_e, ElemType& next_e);
+Status PriorElem8(DuLinkList L, ElemType cur_e, ElemType& pre_e);
+DuLinkList GetElemP8(DuLinkList L, int i);
+Status ListInsertF8(DuLinkList L, int i, ElemType e);
+Status ListInsertR8(DuLinkList L, int i, ElemType e);
+Status ListDelete8(DuLinkList L, int i, ElemType& e);
+void ListTraverse8(DuLinkList L, void(*visit)(ElemType));
+void ListTraverseBack8(DuLinkList L, void(*visit)(ElemType));
 
+
+
+Status compare (ElemType a, ElemType b);
 //---------------------------以下内容为打印函数声明---------------------------
 void visit(ElemType e);
 void printList1(SeqList L);        //1、打印静态存储顺序表
