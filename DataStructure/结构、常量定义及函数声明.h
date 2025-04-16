@@ -150,21 +150,21 @@ Status ListInsertR7(DuLinkList L, int i, ElemType e);   //7、在第 i 个元素结点后
 Status ListDelete7(DuLinkList L, int i, ElemType& e);   //8、在带头结点的双向链表L中删除第 i 个元素
 
 //8、带头结点的双向循环链表函数声明，共15个
-void InitList8(DuLinkList& L);
-void DestroyList8(DuLinkList& L);
-void ClearList8(DuLinkList L);
-Status ListEmpty8(DuLinkList L);
-int ListLength8(DuLinkList L);
-Status GetElem8(DuLinkList L, int i, ElemType& e);
-int LocateElem8(DuLinkList L, ElemType e, Status(*compare)(ElemType, ElemType));
-Status NextElem8(DuLinkList L, ElemType cur_e, ElemType& next_e);
-Status PriorElem8(DuLinkList L, ElemType cur_e, ElemType& pre_e);
-DuLinkList GetElemP8(DuLinkList L, int i);
-Status ListInsertF8(DuLinkList L, int i, ElemType e);
-Status ListInsertR8(DuLinkList L, int i, ElemType e);
-Status ListDelete8(DuLinkList L, int i, ElemType& e);
-void ListTraverse8(DuLinkList L, void(*visit)(ElemType));
-void ListTraverseBack8(DuLinkList L, void(*visit)(ElemType));
+void InitList8(DuLinkList& L);        //1、初始化带头结点的双向循环链表L
+void DestroyList8(DuLinkList& L);     //2、销毁带头结点的双向循环链表
+void ClearList8(DuLinkList L);        //3、清空带头结点的双向循环链表
+Status ListEmpty8(DuLinkList L);      //4、判断带头结点的双向循环链表是否为空
+int ListLength8(DuLinkList L);        //5、求带头结点的双向循环链表的长度
+Status GetElem8(DuLinkList L, int i, ElemType& e);    //6、获取第i个元素
+int LocateElem8(DuLinkList L, ElemType e, Status(*compare)(ElemType, ElemType));  //7、查找值为e的元素，返回位置序号
+Status NextElem8(DuLinkList L, ElemType cur_e, ElemType& next_e);                 //8、查找值为cur_e的元素，求它的直接后继
+Status PriorElem8(DuLinkList L, ElemType cur_e, ElemType& pre_e);                 //9、查找值为cur_e的元素，求它的直接前驱
+DuLinkList GetElemP8(DuLinkList L, int i);                      //10、获取第i个元素，返回指针
+Status ListInsertF8(DuLinkList L, int i, ElemType e);           //11、在第 i 个元素结点前插入元素 e
+Status ListInsertR8(DuLinkList L, int i, ElemType e);           //12、在第 i 个元素结点后插入元素 e
+Status ListDelete8(DuLinkList L, int i, ElemType& e);           //13、在带头结点的双向循环链表L中删除第 i 个元素
+void ListTraverse8(DuLinkList L, void(*visit)(ElemType));       //14、正向遍历带头结点的双向循环链表L中的元素，visit为函数指针，指向打印函数
+void ListTraverseBack8(DuLinkList L, void(*visit)(ElemType));   //15、反向遍历带头结点的双向循环链表L中的元素，visit为函数指针，指向打印函数
 
 
 
@@ -178,4 +178,5 @@ void printList4(LinkList first);   //4、打印带头结点单链表
                                    //5、打印静态链表已在ListTraverse5函数中实现，在上方声明
                                    //6、打印带头结点的使用尾指针的单循环链表已在ListTraverse6函数中实现，在上方声明
 void printList7(DuLinkList L);     //7、打印带头结点的双向链表
+                                   //8、打印带头结点的双向循环链表已在ListTraverse8函数中实现，在上方声明
 #endif
