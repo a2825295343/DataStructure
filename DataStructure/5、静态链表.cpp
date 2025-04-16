@@ -48,12 +48,12 @@ void ClearList5(SLinkList L)
 
 //5、判断链表L是否为空
 Status ListEmpty5(SLinkList L)
-{ //若L是空表，返回OK;否则返回ERROR
+{ //若L是空表，返回TRUE;否则返回FALSE
     if (L[MAX_SIZE - 1].cur == 0)
         //空表(表头结点的cur域为0)
-        return OK;
+        return TRUE;
     else
-        return ERROR;
+        return FALSE;
 }
 
 //6、求链表L的长度

@@ -51,5 +51,11 @@
     <ClCompile Include="8、带头结点的双向循环链表.cpp">
       <Filter>源文件\一、线性表</Filter>
     </ClCompile>
+    <ClCompile Include="9、顺序栈.cpp">
+      <Filter>源文件\二、栈和队列</Filter>
+    </ClCompile>
+    <ClCompile Include="10、链栈.cpp">
+      <Filter>源文件\二、栈和队列</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

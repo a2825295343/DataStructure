@@ -20,20 +20,20 @@ void ClearList1(SeqList& L)
 
 //4、若线性表L为空返回1,否则返回0
 int  ListEmpty1(SeqList L) { 
-    return(!(L.length));
+    return !(L.length);
 }
 
 //5、函数值是表L的长度
 int ListLength1(SeqList L)
 {                                                       
-    return(L.length);
+    return L.length;
 }
 
 //6、获取表L中第 i 个元素
 ElemType GetElem1(SeqList L, int i) { 
     if (1 <= i && i <= L.length)
         return (L.data[i - 1]); //第i-1的单元存储着第i个数据
-    else  return NULL;
+    else return NULL;
 }
 
 //7、在线性表L中查找值为e的数据元素，返回其位序
@@ -72,15 +72,15 @@ int PriorElem1(SeqList L, ElemType x) {   //如果x在表L中且
     else return -1;
 }
 
-//11、在顺序表L中第 i 个元素前插入 x,插入成功返回OK，不成功 返回ERROR
-Status ListInsert1(SeqList& L, int i, ElemType x) {  //在顺序表L中
-    //第 i 个元素前插入 x,插入成功返回OK，不成功 返回ERROR
+//11、在顺序表L中第 i 个元素前插入 e,插入成功返回OK，不成功 返回ERROR
+Status ListInsert1(SeqList& L, int i, ElemType e) {  //在顺序表L中
+    //第 i 个元素前插入 e,插入成功返回OK，不成功 返回ERROR
     if ((i < 1) || (i > L.length + 1) || (L.length == ListSize))
         return ERROR;                           //插入不成功	
     else {
         for (int j = L.length; j > i - 1; j--)                //后移
             L.data[j] = L.data[j - 1];
-        L.data[i - 1] = x;   L.length++;  return OK;     //插入成功       
+        L.data[i - 1] = e;   L.length++;  return OK;     //插入成功       
     }
 }
 

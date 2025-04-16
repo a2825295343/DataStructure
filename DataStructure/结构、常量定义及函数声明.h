@@ -4,10 +4,17 @@
 #include <stdlib.h>
 #include <iostream>
 
-#define ERROR 0
+//下面这俩常量主要指函数执行状态是否成功
 #define OK 1
-typedef int ElemType;   //数据类型，可修改
-typedef int Status;   //状态返回值类型，可修改，与常量ERROR、OK绑定
+#define ERROR 0
+
+//下面这俩常量主要指逻辑值，即判断“是”和“否”
+#define TRUE 1
+#define FALSE 0
+
+typedef int ElemType;   //线性表数据类型，可修改
+typedef int SElemType; //栈与队列数据类型，可修改
+typedef int Status;     //状态返回值类型，可修改，与常量ERROR、OK、TRUE、FALSE绑定
 
 //1、静态存储顺序表结构定义
 #define ListSize 100    //最大允许长度
@@ -23,7 +30,7 @@ typedef struct {
     ElemType* data;
     int length;
     int listsize;
-} SqList;
+} SqList;   //注意没有字母e
 
 //3-4及6、单链表结构定义
 typedef struct LNode {
@@ -46,6 +53,31 @@ typedef struct DuLNode
     struct DuLNode* prior, * next;
 }DuLNode, *DuLinkList;
 
+//8.5、顺序栈结构定义（静态分配，该种定义方式不常用，就不写函数了）
+#define maxSize 100
+typedef struct {
+    SElemType elem[maxSize];   //定长数组
+    int top;        //栈顶下标
+} SeqStack;
+
+//9、顺序栈结构定义（动态分配）
+#define STACK_INIT_SIZE 100   //存储空间初始分配量
+#define STACKINCREMENT  10    //存储空间分配的增量
+typedef struct {
+    SElemType* base; //栈底指针
+    SElemType* top;//栈顶指针
+    int StackSize;   //当前已分配的存储空间
+} SqStack;   //注意没有字母e
+
+//10、链栈结构定义
+typedef struct StackNode {
+    SElemType data; //节点
+    struct StackNode* next; //链指针，指向的不是后继，而是前驱
+} *Link;
+
+typedef struct {
+    Link top; //栈顶指针
+} LinkStack;
 
 //---------------------------以下内容为算法函数声明---------------------------
 
@@ -166,9 +198,29 @@ Status ListDelete8(DuLinkList L, int i, ElemType& e);           //13、在带头结点
 void ListTraverse8(DuLinkList L, void(*visit)(ElemType));       //14、正向遍历带头结点的双向循环链表L中的元素，visit为函数指针，指向打印函数
 void ListTraverseBack8(DuLinkList L, void(*visit)(ElemType));   //15、反向遍历带头结点的双向循环链表L中的元素，visit为函数指针，指向打印函数
 
+//9、顺序栈函数声明，共9个
+Status InitStack9(SqStack& S);               //1、初始化顺序栈S
+Status DestroyStack9(SqStack& S);            //2、销毁顺序栈S
+Status ClearStack9(SqStack S);               //3、清空顺序栈S
+Status StackEmpty9(SqStack& S);              //4、判断顺序栈S是否为空
+Status StackFull9(SqStack& S);               //5、判断顺序栈S是否已满
+int StackLength9(SqStack S);                 //6、求顺序栈S的长度
+Status GetTop9(SqStack S, SElemType& e);     //7、获取栈顶元素
+Status Push9(SqStack& S, SElemType e);       //8、入栈
+Status Pop9(SqStack& S, SElemType& e);       //9、出栈
+
+//10、链栈函数声明，共5个
+Status InitStack10(LinkStack& S);            //1、初始化链栈S
+Status StackEmpty10(LinkStack S);            //2、判断链栈S是否为空
+Status GetTop10(LinkStack S, SElemType& e);  //3、获取栈顶元素
+Status Push10(LinkStack& S, SElemType e);    //4、入栈
+Status Pop10(LinkStack& S, SElemType& e);    //5、出栈
+
+
 
 
 Status compare (ElemType a, ElemType b);
+
 //---------------------------以下内容为打印函数声明---------------------------
 void visit(ElemType e);
 void printList1(SeqList L);        //1、打印静态存储顺序表
@@ -179,4 +231,6 @@ void printList4(LinkList first);   //4、打印带头结点单链表
                                    //6、打印带头结点的使用尾指针的单循环链表已在ListTraverse6函数中实现，在上方声明
 void printList7(DuLinkList L);     //7、打印带头结点的双向链表
                                    //8、打印带头结点的双向循环链表已在ListTraverse8函数中实现，在上方声明
+void printStack9(SqStack S);       //9、打印顺序栈
+void printStack10(LinkStack S);    //10、打印链栈
 #endif

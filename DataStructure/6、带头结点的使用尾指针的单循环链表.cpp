@@ -36,9 +36,9 @@ void ClearList6(LinkList& L)
 Status ListEmpty6(LinkList L)
 {
     if (L->next == L)
-        return OK;
+        return TRUE;
     else
-        return ERROR;
+        return FALSE;
 }
 
 //5、求链表L的长度

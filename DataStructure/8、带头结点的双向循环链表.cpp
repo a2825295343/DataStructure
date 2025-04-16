@@ -34,9 +34,9 @@ void ClearList8(DuLinkList L) //清空
 Status ListEmpty8(DuLinkList L)
 {
     if (L->next == L && L->prior == L)
-        return OK;
+        return TRUE;
     else
-        return ERROR;
+        return FALSE;
 }
 
 //5、求链表L的长度

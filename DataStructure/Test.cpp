@@ -91,5 +91,22 @@ int main() {
 	ListTraverse8(L8, visit);
 	ListTraverseBack8(L8, visit);
 
+	//-----------------------------9°¢À≥–Ú’ª-----------------------------
+	SqStack S9;
+	InitStack9(S9);
+	Push9(S9, 19);
+	Push9(S9, 29);
+	Push9(S9, 39);
+
+	printStack9(S9);
+
+	//-----------------------------10°¢¡¥’ª-----------------------------
+	LinkStack S10;
+	InitStack10(S10);
+	Push10(S10, 110);
+	Push10(S10, 210);
+	Push10(S10, 310);
+
+	printStack10(S10);
     return 0;
 }
