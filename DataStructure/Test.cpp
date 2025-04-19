@@ -108,5 +108,23 @@ int main() {
 	Push10(S10, 310);
 
 	printStack10(S10);
+
+	//---------------------------11、循环队列---------------------------
+	SqQueue Q11;
+	InitQueue11(Q11);
+	EnQueue11(Q11, 111);
+	EnQueue11(Q11, 211);
+	EnQueue11(Q11, 311);
+
+	printQueue11(Q11);
+
+	//---------------------------12、链式队列---------------------------
+	LinkQueue Q12;
+	InitQueue12(Q12);
+	EnQueue12(Q12, 112);
+	EnQueue12(Q12, 212);
+	EnQueue12(Q12, 312);
+
+	printQueue12(Q12);
     return 0;
 }

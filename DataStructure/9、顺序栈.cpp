@@ -82,6 +82,7 @@ Status Pop9(SqStack& S, SElemType& e)
 	return OK;
 }
 
+//打印栈中元素
 void printStack9(SqStack S) {
 	//打印栈中元素
 	if (S.base == NULL) {

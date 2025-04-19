@@ -16,7 +16,7 @@
     <Filter Include="源文件\一、线性表">
       <UniqueIdentifier>{09cea9f0-5fb3-4d50-b556-29b9c83ac27a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="源文件\二、栈和队列">
+    <Filter Include="源文件\二、栈与队列">
       <UniqueIdentifier>{3368112b-f095-4fbb-849f-bfabc2b73b1e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -52,10 +52,16 @@
       <Filter>源文件\一、线性表</Filter>
     </ClCompile>
     <ClCompile Include="9、顺序栈.cpp">
-      <Filter>源文件\二、栈和队列</Filter>
+      <Filter>源文件\二、栈与队列</Filter>
     </ClCompile>
     <ClCompile Include="10、链栈.cpp">
-      <Filter>源文件\二、栈和队列</Filter>
+      <Filter>源文件\二、栈与队列</Filter>
+    </ClCompile>
+    <ClCompile Include="11、循环队列.cpp">
+      <Filter>源文件\二、栈与队列</Filter>
+    </ClCompile>
+    <ClCompile Include="12、链式队列.cpp">
+      <Filter>源文件\二、栈与队列</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

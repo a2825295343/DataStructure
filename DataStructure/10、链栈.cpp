@@ -39,6 +39,7 @@ Status Pop10(LinkStack& S, SElemType& e) {
 	return OK;
 }
 
+//¥Ú”°’ª
 void printStack10(LinkStack S) {
 	Link p = S.top;
 	while (p) {

@@ -13,7 +13,8 @@
 #define FALSE 0
 
 typedef int ElemType;   //线性表数据类型，可修改
-typedef int SElemType;  //栈与队列数据类型，可修改
+typedef int SElemType;  //栈数据类型，可修改
+typedef int QElemType;  //队列数据类型，可修改
 typedef int Status;     //状态返回值类型，可修改，与常量ERROR、OK、TRUE、FALSE绑定
 
 //1、静态存储顺序表结构定义
@@ -78,6 +79,25 @@ typedef struct StackNode {
 typedef struct {
     Link top; //栈顶指针
 } LinkStack;
+
+//11、循环队列结构定义
+#define MAXSIZE 100     //最大长度
+typedef struct {
+    QElemType* data; //初始化的动态分配存储空间
+    int front; //头指针，指示队头位置 
+    int rear; //尾指针，指示队尾位置 
+} SqQueue;
+
+//12、链式队列结构定义
+typedef struct QNode {	 //链队结点
+    QElemType data; 	//结点数据
+    struct QNode* next;	//结点链指针
+} QNode, *QueuePtr;
+
+typedef struct {        //链队结构
+    QueuePtr  front;	//队头指针
+    QueuePtr  rear;	 	//队尾指针
+} LinkQueue;
 
 //---------------------------以下内容为算法函数声明---------------------------
 
@@ -216,8 +236,22 @@ Status GetTop10(LinkStack S, SElemType& e);  //3、获取栈顶元素
 Status Push10(LinkStack& S, SElemType e);    //4、入栈
 Status Pop10(LinkStack& S, SElemType& e);    //5、出栈
 
+//11、循环队列函数声明，共7个
+Status InitQueue11(SqQueue& Q);               //1、初始化循环队列Q
+int QueueLength11(SqQueue Q);		          //2、求循环队列Q的长度
+int QueueEmpty11(SqQueue& Q);                 //3、判断循环队列Q是否为空
+int QueueFull11(SqQueue& Q);	              //4、判断循环队列Q是否已满
+Status EnQueue11(SqQueue& Q, QElemType e);    //5、入队
+Status DeQueue11(SqQueue& Q, QElemType& e);   //6、出队
+Status GetFront11(SqQueue& Q, QElemType& e);  //7、获取队头元素
 
-
+//12、链式队列函数声明，共6个
+Status InitQueue12(LinkQueue& Q);		      //1、初始化链式队列Q
+Status DestroyQueue12(LinkQueue& Q);	      //2、销毁链式队列Q
+int isEmpty12(LinkQueue Q);		              //3、判断链式队列Q是否为空
+int GetFront12(LinkQueue Q, QElemType& e);    //4、获取队头元素
+Status EnQueue12(LinkQueue& Q, QElemType e);  //5、入队
+Status DeQueue12(LinkQueue& Q, QElemType& e); //6、出队
 
 Status compare (ElemType a, ElemType b);
 
@@ -233,4 +267,6 @@ void printList7(DuLinkList L);     //7、打印带头结点的双向链表
                                    //8、打印带头结点的双向循环链表已在ListTraverse8函数中实现，在上方声明
 void printStack9(SqStack S);       //9、打印顺序栈
 void printStack10(LinkStack S);    //10、打印链栈
+void printQueue11(SqQueue Q);      //11、打印循环队列
+void printQueue12(LinkQueue Q);    //12、打印链式队列
 #endif
