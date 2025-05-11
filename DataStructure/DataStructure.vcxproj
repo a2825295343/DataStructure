@@ -129,6 +129,10 @@
   <ItemGroup>
     <ClCompile Include="10、链栈.cpp" />
     <ClCompile Include="11、循环队列.cpp" />
+    <ClCompile Include="13、数组.cpp" />
+    <ClCompile Include="14、稀疏矩阵的三元组存储.cpp" />
+    <ClCompile Include="15、稀疏矩阵的十字链表存储.cpp" />
+    <ClCompile Include="16、广义表的头尾链表存储.cpp" />
     <ClCompile Include="2、动态存储顺序表.cpp" />
     <ClCompile Include="1、静态存储线性表.cpp" />
     <ClCompile Include="3、不带头结点的单链表.cpp" />

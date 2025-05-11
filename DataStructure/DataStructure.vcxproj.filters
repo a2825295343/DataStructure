@@ -19,6 +19,9 @@
     <Filter Include="源文件\二、栈与队列">
       <UniqueIdentifier>{3368112b-f095-4fbb-849f-bfabc2b73b1e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\三、数组与广义表">
+      <UniqueIdentifier>{4580a8bb-9cf0-4107-8201-eef3e7837c5a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Test.cpp">
@@ -62,6 +65,18 @@
     </ClCompile>
     <ClCompile Include="12、链式队列.cpp">
       <Filter>源文件\二、栈与队列</Filter>
+    </ClCompile>
+    <ClCompile Include="13、数组.cpp">
+      <Filter>源文件\三、数组与广义表</Filter>
+    </ClCompile>
+    <ClCompile Include="14、稀疏矩阵的三元组存储.cpp">
+      <Filter>源文件\三、数组与广义表</Filter>
+    </ClCompile>
+    <ClCompile Include="15、稀疏矩阵的十字链表存储.cpp">
+      <Filter>源文件\三、数组与广义表</Filter>
+    </ClCompile>
+    <ClCompile Include="16、广义表的头尾链表存储.cpp">
+      <Filter>源文件\三、数组与广义表</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

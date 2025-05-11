@@ -126,5 +126,59 @@ int main() {
 	EnQueue12(Q12, 312);
 
 	printQueue12(Q12);
+
+	//-----------------------------13、数组-----------------------------
+	Array A13;
+	InitArray13(A13, 2, 3, 4, 5);
+	Assign13(A13, 1, 1, 1, 1);
+
+	//printArray13(A13);
+
+	//----------------------14、稀疏矩阵的三元组存储----------------------
+	TSMatrix M14;
+	/*M14.mu = 4;
+	M14.nu = 4;
+	M14.tu = 4;
+	M14.data[0].i = 1;
+	M14.data[0].j = 1;
+	M14.data[0].e = 1;
+	M14.data[1].i = 2;
+	M14.data[1].j = 2;
+	M14.data[1].e = 2;
+	M14.data[2].i = 3;
+	M14.data[2].j = 3;
+	M14.data[2].e = 3;
+	M14.data[3].i = 4;
+	M14.data[3].j = 4;
+	M14.data[3].e = 4;*/
+
+	//printMatrix14(M14);
+
+	//----------------------15、稀疏矩阵的十字链表存储----------------------
+	CrossList M15 = { nullptr, nullptr, 0, 0, 0 };
+	CreateSMatrix_OL15(M15);
+
+	printMatrix15(M15);
+
+	//----------------------16、广义表的头尾链表存储----------------------
+	GList L16;
+	/*L16 = (GList)malloc(sizeof(GLNode));
+	L16->tag = LIST;
+	L16->ptr.hp = (GList)malloc(sizeof(GLNode));
+	L16->ptr.hp->tag = ATOM;
+	L16->ptr.hp->atom = 1;
+	L16->ptr.tp = (GList)malloc(sizeof(GLNode));
+	L16->ptr.tp->tag = LIST;
+	L16->ptr.tp->ptr.hp = (GList)malloc(sizeof(GLNode));
+	L16->ptr.tp->ptr.hp->tag = ATOM;
+	L16->ptr.tp->ptr.hp->atom = 2;
+	L16->ptr.tp->ptr.tp = (GList)malloc(sizeof(GLNode));
+	L16->ptr.tp->ptr.tp->tag = LIST;
+	L16->ptr.tp->ptr.tp->ptr.hp = (GList)malloc(sizeof(GLNode));
+	L16->ptr.tp->ptr.tp->ptr.hp->tag = ATOM;
+	L16->ptr.tp->ptr.tp->ptr.hp->atom = 3;*/
+
+	//printGList16(L16);
+
     return 0;
 }

@@ -1,272 +1,368 @@
-#ifndef HEAD_H
+ï»¿#ifndef HEAD_H
 #define HEAD_H
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
+#include <stdarg.h>  //æ ‡å‡†å¤´æ–‡ä»¶ï¼Œæä¾›å®va_startï¼Œva_argå’Œva_endç”¨äºå­˜å–å¯å˜é•¿å‚æ•°è¡¨
 
-//ÏÂÃæÕâÁ©³£Á¿Ö÷ÒªÖ¸º¯ÊıÖ´ĞĞ×´Ì¬ÊÇ·ñ³É¹¦
+//ä¸‹é¢è¿™ä¿©å¸¸é‡ä¸»è¦æŒ‡å‡½æ•°æ‰§è¡ŒçŠ¶æ€æ˜¯å¦æˆåŠŸ
 #define OK 1
 #define ERROR 0
 
-//ÏÂÃæÕâÁ©³£Á¿Ö÷ÒªÖ¸Âß¼­Öµ£¬¼´ÅĞ¶Ï¡°ÊÇ¡±ºÍ¡°·ñ¡±
+//ä¸‹é¢è¿™ä¿©å¸¸é‡ä¸»è¦æŒ‡é€»è¾‘å€¼ï¼Œå³åˆ¤æ–­â€œæ˜¯â€å’Œâ€œå¦â€
 #define TRUE 1
 #define FALSE 0
 
-typedef int ElemType;   //ÏßĞÔ±íÊı¾İÀàĞÍ£¬¿ÉĞŞ¸Ä
-typedef int SElemType;  //Õ»Êı¾İÀàĞÍ£¬¿ÉĞŞ¸Ä
-typedef int QElemType;  //¶ÓÁĞÊı¾İÀàĞÍ£¬¿ÉĞŞ¸Ä
-typedef int Status;     //×´Ì¬·µ»ØÖµÀàĞÍ£¬¿ÉĞŞ¸Ä£¬Óë³£Á¿ERROR¡¢OK¡¢TRUE¡¢FALSE°ó¶¨
+typedef int ElemType;   //çº¿æ€§è¡¨æ•°æ®ç±»å‹ï¼Œå¯ä¿®æ”¹
+typedef int SElemType;  //æ ˆæ•°æ®ç±»å‹ï¼Œå¯ä¿®æ”¹
+typedef int QElemType;  //é˜Ÿåˆ—æ•°æ®ç±»å‹ï¼Œå¯ä¿®æ”¹
+typedef int Status;     //çŠ¶æ€è¿”å›å€¼ç±»å‹ï¼Œå¯ä¿®æ”¹ï¼Œä¸å¸¸é‡ERRORã€OKã€TRUEã€FALSEç»‘å®š
 
-//1¡¢¾²Ì¬´æ´¢Ë³Ğò±í½á¹¹¶¨Òå
-#define ListSize 100    //×î´óÔÊĞí³¤¶È
+//1ã€é™æ€å­˜å‚¨é¡ºåºè¡¨ç»“æ„å®šä¹‰
+#define ListSize 100    //æœ€å¤§å…è®¸é•¿åº¦
 typedef struct {
-    ElemType data[ListSize];    //´æ´¢¿Õ¼ä
-    int length;         //µ±Ç°ÔªËØ¸öÊı
+    ElemType data[ListSize];    //å­˜å‚¨ç©ºé—´
+    int length;         //å½“å‰å…ƒç´ ä¸ªæ•°
 } SeqList;
 
-//2¡¢¶¯Ì¬´æ´¢Ë³Ğò±í½á¹¹¶¨Òå
+//2ã€åŠ¨æ€å­˜å‚¨é¡ºåºè¡¨ç»“æ„å®šä¹‰
 #define LIST_INIT_SIZE 12
 #define LISTINCREMENT 4
 typedef struct {
     ElemType* data;
     int length;
     int listsize;
-} SqList;   //×¢ÒâÃ»ÓĞ×ÖÄ¸e
+} SqList;   //æ³¨æ„æ²¡æœ‰å­—æ¯e
 
-//3-4¼°6¡¢µ¥Á´±í½á¹¹¶¨Òå
+//3-4åŠ6ã€å•é“¾è¡¨ç»“æ„å®šä¹‰
 typedef struct LNode {
-    ElemType   data;       //Êı¾İÓò
-    struct LNode* next;   //Ö¸ÕëÓò
+    ElemType   data;       //æ•°æ®åŸŸ
+    struct LNode* next;   //æŒ‡é’ˆåŸŸ
 }LNode, *LinkList;
 
-//5¡¢¾²Ì¬Á´±í½á¹¹¶¨Òå
+//5ã€é™æ€é“¾è¡¨ç»“æ„å®šä¹‰
 #define MAX_SIZE 100 
 typedef struct
 {
-    ElemType data; // Êı¾İÓò   
-    int cur; // ÓÎ±êÓò 
+    ElemType data; // æ•°æ®åŸŸ   
+    int cur; // æ¸¸æ ‡åŸŸ 
 }component, SLinkList[MAX_SIZE];
 
-//7-8¡¢Ë«ÏòÁ´±í½á¹¹¶¨Òå
+//7-8ã€åŒå‘é“¾è¡¨ç»“æ„å®šä¹‰
 typedef struct DuLNode
 {
     ElemType data;
     struct DuLNode* prior, * next;
 }DuLNode, *DuLinkList;
 
-//8.5¡¢Ë³ĞòÕ»½á¹¹¶¨Òå£¨¾²Ì¬·ÖÅä£¬¸ÃÖÖ¶¨Òå·½Ê½²»³£ÓÃ£¬¾Í²»Ğ´º¯ÊıÁË£©
+//8.5ã€é¡ºåºæ ˆç»“æ„å®šä¹‰ï¼ˆé™æ€åˆ†é…ï¼Œè¯¥ç§å®šä¹‰æ–¹å¼ä¸å¸¸ç”¨ï¼Œå°±ä¸å†™å‡½æ•°äº†ï¼‰
 #define maxSize 100
 typedef struct {
-    SElemType elem[maxSize];   //¶¨³¤Êı×é
-    int top;        //Õ»¶¥ÏÂ±ê
+    SElemType elem[maxSize];   //å®šé•¿æ•°ç»„
+    int top;        //æ ˆé¡¶ä¸‹æ ‡
 } SeqStack;
 
-//9¡¢Ë³ĞòÕ»½á¹¹¶¨Òå£¨¶¯Ì¬·ÖÅä£©
-#define STACK_INIT_SIZE 100   //´æ´¢¿Õ¼ä³õÊ¼·ÖÅäÁ¿
-#define STACKINCREMENT  10    //´æ´¢¿Õ¼ä·ÖÅäµÄÔöÁ¿
+//9ã€é¡ºåºæ ˆç»“æ„å®šä¹‰ï¼ˆåŠ¨æ€åˆ†é…ï¼‰
+#define STACK_INIT_SIZE 100   //å­˜å‚¨ç©ºé—´åˆå§‹åˆ†é…é‡
+#define STACKINCREMENT  10    //å­˜å‚¨ç©ºé—´åˆ†é…çš„å¢é‡
 typedef struct {
-    SElemType* base; //Õ»µ×Ö¸Õë
-    SElemType* top;//Õ»¶¥Ö¸Õë
-    int StackSize;   //µ±Ç°ÒÑ·ÖÅäµÄ´æ´¢¿Õ¼ä
-} SqStack;   //×¢ÒâÃ»ÓĞ×ÖÄ¸e
+    SElemType* base; //æ ˆåº•æŒ‡é’ˆ
+    SElemType* top;//æ ˆé¡¶æŒ‡é’ˆ
+    int StackSize;   //å½“å‰å·²åˆ†é…çš„å­˜å‚¨ç©ºé—´
+} SqStack;   //æ³¨æ„æ²¡æœ‰å­—æ¯e
 
-//10¡¢Á´Õ»½á¹¹¶¨Òå
+//10ã€é“¾æ ˆç»“æ„å®šä¹‰
 typedef struct StackNode {
-    SElemType data; //½Úµã
-    struct StackNode* next; //Á´Ö¸Õë£¬Ö¸ÏòµÄ²»ÊÇºó¼Ì£¬¶øÊÇÇ°Çı
+    SElemType data; //èŠ‚ç‚¹
+    struct StackNode* next; //é“¾æŒ‡é’ˆï¼ŒæŒ‡å‘çš„ä¸æ˜¯åç»§ï¼Œè€Œæ˜¯å‰é©±
 } *Link;
 
 typedef struct {
-    Link top; //Õ»¶¥Ö¸Õë
+    Link top; //æ ˆé¡¶æŒ‡é’ˆ
 } LinkStack;
 
-//11¡¢Ñ­»·¶ÓÁĞ½á¹¹¶¨Òå
-#define MAXSIZE 100     //×î´ó³¤¶È
+//11ã€å¾ªç¯é˜Ÿåˆ—ç»“æ„å®šä¹‰
+#define MAXSIZE 100     //æœ€å¤§é•¿åº¦
 typedef struct {
-    QElemType* data; //³õÊ¼»¯µÄ¶¯Ì¬·ÖÅä´æ´¢¿Õ¼ä
-    int front; //Í·Ö¸Õë£¬Ö¸Ê¾¶ÓÍ·Î»ÖÃ 
-    int rear; //Î²Ö¸Õë£¬Ö¸Ê¾¶ÓÎ²Î»ÖÃ 
+    QElemType* data; //åˆå§‹åŒ–çš„åŠ¨æ€åˆ†é…å­˜å‚¨ç©ºé—´
+    int front; //å¤´æŒ‡é’ˆï¼ŒæŒ‡ç¤ºé˜Ÿå¤´ä½ç½® 
+    int rear; //å°¾æŒ‡é’ˆï¼ŒæŒ‡ç¤ºé˜Ÿå°¾ä½ç½® 
 } SqQueue;
 
-//12¡¢Á´Ê½¶ÓÁĞ½á¹¹¶¨Òå
-typedef struct QNode {	 //Á´¶Ó½áµã
-    QElemType data; 	//½áµãÊı¾İ
-    struct QNode* next;	//½áµãÁ´Ö¸Õë
+//12ã€é“¾å¼é˜Ÿåˆ—ç»“æ„å®šä¹‰
+typedef struct QNode {	 //é“¾é˜Ÿç»“ç‚¹
+    QElemType data; 	//ç»“ç‚¹æ•°æ®
+    struct QNode* next;	//ç»“ç‚¹é“¾æŒ‡é’ˆ
 } QNode, *QueuePtr;
 
-typedef struct {        //Á´¶Ó½á¹¹
-    QueuePtr  front;	//¶ÓÍ·Ö¸Õë
-    QueuePtr  rear;	 	//¶ÓÎ²Ö¸Õë
+typedef struct {        //é“¾é˜Ÿç»“æ„
+    QueuePtr  front;	//é˜Ÿå¤´æŒ‡é’ˆ
+    QueuePtr  rear;	 	//é˜Ÿå°¾æŒ‡é’ˆ
 } LinkQueue;
 
-//---------------------------ÒÔÏÂÄÚÈİÎªËã·¨º¯ÊıÉùÃ÷---------------------------
+//13ã€æ•°ç»„ç»“æ„å®šä¹‰
+# define MAX_ARRAY_DIM 8  //æ•°ç»„ç»´æ•°çš„æœ€å¤§å€¼
+typedef  struct {
+    ElemType* base; //æ•°ç»„å…ƒç´ åŸºå€ï¼Œç”±InitArrayÂ åˆ†é…
+    int  dim;  //æ•°ç»„ç»´æ•°
+    int* bounds; //æ•°ç»„ç»´ç•ŒåŸºå€ï¼Œç”±InitArrayåˆ†é…
+    int* constants; //æ•°ç»„æ˜ åƒå‡½æ•°å¸¸é‡åŸºå€ï¼Œç”±InitArrayåˆ†é…
+}Array;
 
-//1¡¢¾²Ì¬´æ´¢Ë³Ğò±íº¯ÊıÉùÃ÷£¬¹²12¸ö
-void InitList1(SeqList& L);               //1¡¢³õÊ¼»¯±íLÎª¿Õ±í
-void DestroyList1(SeqList& L);            //2¡¢Ïú»ÙÏßĞÔ±íL
-void ClearList1(SeqList& L);              //3¡¢Çå¿ÕÏßĞÔ±íL
-int ListEmpty1(SeqList L);                //4¡¢ÅĞ¶ÏÏßĞÔ±íLÊÇ·ñÎª¿Õ
-int ListLength1(SeqList L);               //5¡¢ÇóÏßĞÔ±íLµÄ³¤¶È
-ElemType GetElem1(SeqList L, int i);      //6¡¢»ñÈ¡±íLÖĞµÚ i ¸öÔªËØ
-int LocateELem1(SeqList L, ElemType e);   //7¡¢²éÕÒÖµÎªeµÄÔªËØ£¬·µ»ØÆäÎ»Ğò
-int IsIn1(SeqList L, ElemType x);         //8¡¢ÅĞ¶ÏxÊÇ·ñÔÚ±íLÖĞ
-int NextElem1(SeqList L, ElemType x);     //9¡¢ÇóxµÄÖ±½Óºó¼Ì
-int PriorElem1(SeqList L, ElemType x);    //10¡¢ÇóxµÄÖ±½ÓÇ°Çı
-Status ListInsert1(SeqList& L, int i, ElemType e); //11¡¢ÔÚµÚ i ¸öÔªËØÇ°²åÈëÔªËØ e
-Status ListDelete1(SeqList& L, int i);    //12¡¢ÔÚË³Ğò±íLÖĞÉ¾³ıµÚ i ¸öÔªËØ
+//14ã€ç¨€ç–çŸ©é˜µçš„ä¸‰å…ƒç»„å­˜å‚¨ç»“æ„å®šä¹‰
+#define MaxSize 100              //éé›¶å…ƒä¸ªæ•°çš„æœ€å¤§å€¼
+typedef struct
+{
+    int i, j;               // è¡Œä¸‹æ ‡,åˆ—ä¸‹æ ‡ 
+    ElemType e; // éé›¶å…ƒç´ å€¼ 
+}Triple;
 
-//2¡¢¶¯Ì¬´æ´¢Ë³Ğò±íº¯ÊıÉùÃ÷£¬¹²14¸ö
-Status InitList2(SqList& L);              //1¡¢³õÊ¼»¯±íLÎª¿Õ±í
-Status DestroyList2(SqList& L);           //2¡¢Ïú»ÙÏßĞÔ±íL
-Status ClearList2(SqList& L);             //3¡¢Çå¿ÕÏßĞÔ±íL
-int ListEmpty2(SqList L);                 //4¡¢ÅĞ¶ÏÏßĞÔ±íLÊÇ·ñÎª¿Õ
-int ListLength2(SqList L);                //5¡¢ÇóÏßĞÔ±íLµÄ³¤¶È
-ElemType GetElem2(SqList L, int i);       //6¡¢»ñÈ¡±íLÖĞµÚ i ¸öÔªËØ
-int LocateElem2(SqList L, ElemType x);    //7¡¢²éÕÒÖµÎªxµÄÔªËØ£¬·µ»ØÆäÎ»Ğò
-int IsIn2(SqList L, ElemType x);          //8¡¢ÅĞ¶ÏxÊÇ·ñÔÚ±íLÖĞ
-int NextElem2(SqList L, ElemType x);      //9¡¢ÇóxµÄÖ±½Óºó¼Ì
-int PriorElem2(SqList L, ElemType x);     //10¡¢ÇóxµÄÖ±½ÓÇ°Çı
-Status ListInsert2(SqList& L, int i, ElemType e); //11¡¢ÔÚµÚ i ¸öÔªËØÇ°²åÈëÔªËØ e
-Status ListDelete2(SqList& L, int i);     //12¡¢ÔÚË³Ğò±íLÖĞÉ¾³ıµÚ i ¸öÔªËØ
-void Union2(SqList& A, SqList B);         //13¡¢¼¯ºÏµÄ¡°²¢¡±²Ù×÷
-void Intersection2(SqList& A, SqList B);  //14¡¢¼¯ºÏµÄ¡°½»¡±²Ù×÷
+typedef struct
+{
+    Triple data[MaxSize + 1]; //éé›¶å…ƒä¸‰å…ƒç»„è¡¨,data[0]æœªç”¨
+    int mu, nu, tu; // çŸ©é˜µçš„è¡Œæ•°ã€åˆ—æ•°å’Œéé›¶å…ƒä¸ªæ•° 
+}TSMatrix;
 
-//3¡¢²»´øÍ·½áµãµÄµ¥Á´±íº¯ÊıÉùÃ÷£¬¹²12¸ö
-void InitList3(LinkList& first);          //1¡¢³õÊ¼»¯µ¥Á´±ífirstÎª¿Õ±í
-void DestroyList3(LinkList& first);       //2¡¢Ïú»Ùµ¥Á´±í
-void clear3(LinkList& first);             //3¡¢Çå¿Õµ¥Á´±í
-int ListEmpty3(LinkList first);           //4¡¢ÅĞ¶Ïµ¥Á´±íÊÇ·ñÎª¿Õ
-int ListLength3(LinkList first);          //5¡¢Çóµ¥Á´±íµÄ³¤¶È
-ElemType GetElem3(LinkList first, int i); //6¡¢»ñÈ¡µ¥Á´±íÖĞµÚi¸öÔªËØ
-LinkList LocateElem3(LinkList first, ElemType x); //7¡¢²éÕÒÖµÎªxµÄÔªËØ£¬·µ»ØÖ¸Õë
-int IsIn3(LinkList first, ElemType x); //8¡¢ÅĞ¶ÏxÊÇ·ñÔÚµ¥Á´±íÖĞ
-LinkList NextElem3(LinkList first, ElemType x);   //9¡¢ÇóxµÄÖ±½Óºó¼Ì
-LinkList PriorElem3(LinkList first, ElemType x);  //10¡¢ÇóxµÄÖ±½ÓÇ°Çı
-Status ListInsert3(LinkList& first, int i, ElemType x); //11¡¢ÔÚµÚ i ¸öÔªËØÇ°²åÈëÔªËØ x
-Status ListDelete3(LinkList& first, int i);  //12¡¢É¾³ıµÚ i ¸öÔªËØ
+//14.5ã€ç¨€ç–çŸ©é˜µçš„è¡Œé€»è¾‘é“¾æ¥é¡ºåºè¡¨å­˜å‚¨ç»“æ„å®šä¹‰
+#define maxSIZE 100
+#define MAXRC 80
+typedef struct {
+    Triple data[maxSIZE + 1];
+    int rpos[MAXRC + 1]; // å„è¡Œç¬¬ä¸€ä¸ªéé›¶å…ƒçš„ä½ç½®è¡¨
+    int mu, nu, tu; 	// çŸ©é˜µçš„è¡Œæ•°ã€åˆ—æ•°å’Œéé›¶å…ƒä¸ªæ•°
+} RLSMatrix;
 
-//4¡¢´øÍ·½áµãµÄµ¥Á´±íº¯ÊıÉùÃ÷£¬¹²15¸ö
-void InitList4(LinkList& first);           //1¡¢³õÊ¼»¯´øÍ·½áµãµ¥Á´±ífirstÎª¿Õ±í
-void DestroyList4(LinkList& first);        //2¡¢Ïú»Ù´øÍ·½áµãµ¥Á´±í
-void clear4(LinkList& first);              //3¡¢Çå¿Õ´øÍ·½áµãµ¥Á´±í
-int ListEmpty4(LinkList first);            //4¡¢ÅĞ¶Ï´øÍ·½áµãµ¥Á´±íÊÇ·ñÎª¿Õ
-int ListLength4(LinkList first);           //5¡¢Çó´øÍ·½áµãµ¥Á´±íµÄ³¤¶È
-ElemType GetElem4(LinkList first, int i);  //6¡¢»ñÈ¡´øÍ·½áµãµ¥Á´±íÖĞµÚi¸öÔªËØ
-LNode* LocateElem4(LinkList first, ElemType x);  //7¡¢²éÕÒÖµÎªxµÄÔªËØ£¬·µ»ØÖ¸Õë
-int LocateELem_L4(LinkList first, ElemType x);   //8¡¢²éÕÒÖµÎªxµÄÔªËØ£¬·µ»ØÎ»ÖÃĞòºÅ
-int IsIn4(LinkList first, ElemType x);    //9¡¢ÅĞ¶ÏxÊÇ·ñÔÚ´øÍ·½áµãµ¥Á´±íÖĞ
-LinkList NextElem4(LinkList first, ElemType x);  //10¡¢ÇóxµÄÖ±½Óºó¼Ì
-LinkList PriorElem4(LinkList first, ElemType x); //11¡¢ÇóxµÄÖ±½ÓÇ°Çı
-Status ListInsert4(LinkList first, int i, ElemType x);  //12¡¢ÔÚµÚ i ¸öÔªËØÇ°²åÈëÔªËØ x
-Status ListDelete4(LinkList first, int i); //13¡¢É¾³ıµÚ i ¸öÔªËØ
-LinkList createListF4(void);               //14¡¢Í·²å·¨´´½¨´øÍ·½áµãµ¥Á´±í£¬ĞÂÔöµÄÔªËØ²åÈëµ½Í·²¿£¬¼´°´ÓÃ»§ÊäÈëÊı¾İµÄÏà·´Ë³Ğò´æ´¢
-LinkList createListR4(void);               //15¡¢Î²²å·¨´´½¨´øÍ·½áµãµ¥Á´±í£¬ĞÂÔöµÄÔªËØ²åÈëµ½Î²²¿£¬¼´°´ÓÃ»§ÊäÈëÊı¾İµÄË³Ğò´æ´¢
+//15ã€ç¨€ç–çŸ©é˜µçš„åå­—é“¾è¡¨å­˜å‚¨ç»“æ„å®šä¹‰
+typedef struct OLNode                 //ç»“ç‚¹çš„å®šä¹‰
+{
+    int i, j;                                            // éé›¶å…ƒçš„è¡Œå’Œåˆ—ä¸‹æ ‡ 
+    ElemType e;                                // éé›¶å…ƒç´ å€¼ 
+    struct OLNode* right, * down;    // è¯¥éé›¶å…ƒæ‰€åœ¨è¡Œè¡¨å’Œ
+    //åˆ—è¡¨çš„åç»§é“¾åŸŸ 
+}OLNode, *OLink;
 
-//5¡¢¾²Ì¬Á´±íº¯ÊıÉùÃ÷£¬¹²13¸ö
-int Malloc5(SLinkList space);              //1¡¢·ÖÅä¾²Ì¬Á´±í½áµã
-void Free5(SLinkList space, int k);        //2¡¢»ØÊÕ½áµãk
-void InitList5(SLinkList L);               //3¡¢³õÊ¼»¯¾²Ì¬Á´±íL
-void ClearList5(SLinkList L);              //4¡¢Çå¿Õ¾²Ì¬Á´±íL
-Status ListEmpty5(SLinkList L);            //5¡¢ÅĞ¶Ï¾²Ì¬Á´±íLÊÇ·ñÎª¿Õ
-int ListLength5(SLinkList L);              //6¡¢Çó¾²Ì¬Á´±íLµÄ³¤¶È
-Status GetElem5(SLinkList L, int i, ElemType& e);  //7¡¢»ñÈ¡¾²Ì¬Á´±íLÖĞµÚi¸öÔªËØ
-int LocateElem5(SLinkList L, ElemType e);  //8¡¢²éÕÒÖµÎªeµÄÔªËØ£¬·µ»ØÆäÎ»Ğò
-Status NextElem5(SLinkList L, ElemType cur_e, ElemType& next_e);   //9¡¢²éÕÒÖµÎªcur_eµÄÔªËØ£¬·µ»ØËüµÄÖ±½Óºó¼Ì
-Status PriorElem5(SLinkList L, ElemType cur_e, ElemType& pre_e);   //10¡¢²éÕÒÖµÎªcur_eµÄÔªËØ£¬·µ»ØËüµÄÖ±½ÓÇ°Çı
-Status ListInsert5(SLinkList L, int i, ElemType e);   //11¡¢ÔÚ¾²Ì¬Á´±íLÖĞµÚi¸öÔªËØÇ°²åÈëÔªËØe
-Status ListDelete5(SLinkList L, int i, ElemType& e);  //12¡¢ÔÚ¾²Ì¬Á´±íLÖĞÉ¾³ıµÚi¸öÔªËØ
-void ListTraverse5(SLinkList L, void(*visit)(ElemType)); //13¡¢±éÀú¾²Ì¬Á´±íLÖĞµÄÔªËØ£¬visitÎªº¯ÊıÖ¸Õë£¬Ö¸Ïò´òÓ¡º¯Êı
+typedef struct                           //é“¾è¡¨çš„å®šä¹‰
+{
+    OLink* rhead, * chead;  // è¡Œå’Œåˆ—é“¾è¡¨å¤´æŒ‡é’ˆå‘é‡åŸºå€,ç”±           
+    //CreatSMatrix_OL()åˆ†é…
+    int mu, nu, tu;            // ç¨€ç–çŸ©é˜µçš„è¡Œã€åˆ—æ•°å’Œéé›¶å…ƒä¸ªæ•° 
+}CrossList;
 
-//6¡¢´øÍ·½áµãµÄÊ¹ÓÃÎ²Ö¸ÕëµÄµ¥Ñ­»·Á´±íº¯ÊıÉùÃ÷£¬¹²12¸ö
-void InitList6(LinkList& L);            //1¡¢³õÊ¼»¯´øÍ·½áµãµÄÊ¹ÓÃÎ²Ö¸ÕëµÄµ¥Ñ­»·Á´±íL
-void DestroyList6(LinkList& L);         //2¡¢Ïú»Ù´øÍ·½áµãµÄÊ¹ÓÃÎ²Ö¸ÕëµÄµ¥Ñ­»·Á´±í
-void ClearList6(LinkList& L);           //3¡¢Çå¿Õ´øÍ·½áµãµÄÊ¹ÓÃÎ²Ö¸ÕëµÄµ¥Ñ­»·Á´±í
-Status ListEmpty6(LinkList L);          //4¡¢ÅĞ¶Ï´øÍ·½áµãµÄÊ¹ÓÃÎ²Ö¸ÕëµÄµ¥Ñ­»·Á´±íÊÇ·ñÎª¿Õ
-int ListLength6(LinkList L);            //5¡¢Çó´øÍ·½áµãµÄÊ¹ÓÃÎ²Ö¸ÕëµÄµ¥Ñ­»·Á´±íµÄ³¤¶È
-Status GetElem6(LinkList L, int i, ElemType& e);   //6¡¢»ñÈ¡µÚi¸öÔªËØ
-int LocateElem6(LinkList L, ElemType e);           //7¡¢²éÕÒÖµÎªeµÄÔªËØ£¬·µ»ØÎ»ÖÃĞòºÅ
-Status NextElem6(LinkList L, ElemType cur_e, ElemType& next_e);  //8¡¢²éÕÒÖµÎªcur_eµÄÔªËØ£¬ÇóËüµÄÖ±½Óºó¼Ì
-Status PriorElem6(LinkList L, ElemType cur_e, ElemType& pre_e);  //9¡¢²éÕÒÖµÎªcur_eµÄÔªËØ£¬ÇóËüµÄÖ±½ÓÇ°Çı
-Status ListInsert6(LinkList& L, int i, ElemType e);              //10¡¢ÔÚ´øÍ·½áµãµÄÊ¹ÓÃÎ²Ö¸ÕëµÄµ¥Ñ­»·Á´±íLÖĞµÚi¸öÔªËØÇ°²åÈëÔªËØe
-Status ListDelete6(LinkList& L, int i, ElemType& e);             //11¡¢ÔÚ´øÍ·½áµãµÄÊ¹ÓÃÎ²Ö¸ÕëµÄµ¥Ñ­»·Á´±íLÖĞÉ¾³ıµÚi¸öÔªËØ
-void ListTraverse6(LinkList L, void(*visit)(ElemType));          //12¡¢±éÀú´øÍ·½áµãµÄÊ¹ÓÃÎ²Ö¸ÕëµÄµ¥Ñ­»·Á´±íLÖĞµÄÔªËØ£¬visitÎªº¯ÊıÖ¸Õë£¬Ö¸Ïò´òÓ¡º¯Êı
+typedef int AtomType; //åŸå­ç»“ç‚¹çš„æ•°æ®åŸŸç±»å‹
 
-//7¡¢´øÍ·½áµãµÄË«ÏòÁ´±íº¯ÊıÉùÃ÷£¬¹²8¸ö
-void InitList7(DuLinkList& L);        //1¡¢³õÊ¼»¯´øÍ·½áµãµÄË«ÏòÁ´±íL
-void DestroyList7(DuLinkList& L);     //2¡¢Ïú»Ù´øÍ·½áµãµÄË«ÏòÁ´±í
-void ClearList7(DuLinkList& L);       //3¡¢Çå¿Õ´øÍ·½áµãµÄË«ÏòÁ´±í
-int ListLength7(DuLinkList L);        //4¡¢Çó´øÍ·½áµãµÄË«ÏòÁ´±íµÄ³¤¶È
-DuLinkList GetElemP7(DuLinkList L, int i);               //5¡¢»ñÈ¡µÚi¸öÔªËØ£¬·µ»ØÖ¸Õë
-Status ListInsertF7(DuLinkList L, int i, ElemType e);   //6¡¢ÔÚµÚ i ¸öÔªËØ½áµãÇ°²åÈëÔªËØ e
-Status ListInsertR7(DuLinkList L, int i, ElemType e);   //7¡¢ÔÚµÚ i ¸öÔªËØ½áµãºó²åÈëÔªËØ e
-Status ListDelete7(DuLinkList L, int i, ElemType& e);   //8¡¢ÔÚ´øÍ·½áµãµÄË«ÏòÁ´±íLÖĞÉ¾³ıµÚ i ¸öÔªËØ
+//16ã€å¹¿ä¹‰è¡¨çš„å¤´å°¾é“¾è¡¨å­˜å‚¨ç»“æ„å®šä¹‰
+typedef enum { ATOM, LIST } ElemTag; // 0:åŸå­, 1:å­è¡¨
+typedef struct GLNode {
+ElemTag tag; // å…¬å…±éƒ¨åˆ†ï¼Œæ ‡å¿—åŸŸï¼Œç”¨äºåŒºåˆ†åŸå­ç»“ç‚¹å’Œè¡¨ç»“ç‚¹
+union {           // åŸå­ç»“ç‚¹å’Œè¡¨ç»“ç‚¹çš„è”åˆéƒ¨åˆ†
+    AtomType atom; // åŸå­ç»“ç‚¹çš„æ•°æ®åŸŸ
+    struct { struct GLNode* hp, * tp; } ptr;
+    // ptræ˜¯è¡¨ç»“ç‚¹çš„æŒ‡é’ˆåŸŸï¼Œ ptr.hpå’Œptr.tpåˆ†åˆ«æŒ‡å‘è¡¨å¤´å’Œè¡¨å°¾
+};
+} *GList; //å¹¿ä¹‰è¡¨ç±»å‹
 
-//8¡¢´øÍ·½áµãµÄË«ÏòÑ­»·Á´±íº¯ÊıÉùÃ÷£¬¹²15¸ö
-void InitList8(DuLinkList& L);        //1¡¢³õÊ¼»¯´øÍ·½áµãµÄË«ÏòÑ­»·Á´±íL
-void DestroyList8(DuLinkList& L);     //2¡¢Ïú»Ù´øÍ·½áµãµÄË«ÏòÑ­»·Á´±í
-void ClearList8(DuLinkList L);        //3¡¢Çå¿Õ´øÍ·½áµãµÄË«ÏòÑ­»·Á´±í
-Status ListEmpty8(DuLinkList L);      //4¡¢ÅĞ¶Ï´øÍ·½áµãµÄË«ÏòÑ­»·Á´±íÊÇ·ñÎª¿Õ
-int ListLength8(DuLinkList L);        //5¡¢Çó´øÍ·½áµãµÄË«ÏòÑ­»·Á´±íµÄ³¤¶È
-Status GetElem8(DuLinkList L, int i, ElemType& e);    //6¡¢»ñÈ¡µÚi¸öÔªËØ
-int LocateElem8(DuLinkList L, ElemType e, Status(*compare)(ElemType, ElemType));  //7¡¢²éÕÒÖµÎªeµÄÔªËØ£¬·µ»ØÎ»ÖÃĞòºÅ
-Status NextElem8(DuLinkList L, ElemType cur_e, ElemType& next_e);                 //8¡¢²éÕÒÖµÎªcur_eµÄÔªËØ£¬ÇóËüµÄÖ±½Óºó¼Ì
-Status PriorElem8(DuLinkList L, ElemType cur_e, ElemType& pre_e);                 //9¡¢²éÕÒÖµÎªcur_eµÄÔªËØ£¬ÇóËüµÄÖ±½ÓÇ°Çı
-DuLinkList GetElemP8(DuLinkList L, int i);                      //10¡¢»ñÈ¡µÚi¸öÔªËØ£¬·µ»ØÖ¸Õë
-Status ListInsertF8(DuLinkList L, int i, ElemType e);           //11¡¢ÔÚµÚ i ¸öÔªËØ½áµãÇ°²åÈëÔªËØ e
-Status ListInsertR8(DuLinkList L, int i, ElemType e);           //12¡¢ÔÚµÚ i ¸öÔªËØ½áµãºó²åÈëÔªËØ e
-Status ListDelete8(DuLinkList L, int i, ElemType& e);           //13¡¢ÔÚ´øÍ·½áµãµÄË«ÏòÑ­»·Á´±íLÖĞÉ¾³ıµÚ i ¸öÔªËØ
-void ListTraverse8(DuLinkList L, void(*visit)(ElemType));       //14¡¢ÕıÏò±éÀú´øÍ·½áµãµÄË«ÏòÑ­»·Á´±íLÖĞµÄÔªËØ£¬visitÎªº¯ÊıÖ¸Õë£¬Ö¸Ïò´òÓ¡º¯Êı
-void ListTraverseBack8(DuLinkList L, void(*visit)(ElemType));   //15¡¢·´Ïò±éÀú´øÍ·½áµãµÄË«ÏòÑ­»·Á´±íLÖĞµÄÔªËØ£¬visitÎªº¯ÊıÖ¸Õë£¬Ö¸Ïò´òÓ¡º¯Êı
+//16.5ã€å¹¿ä¹‰è¡¨çš„æ‰©å±•çº¿æ€§é“¾è¡¨å­˜å‚¨ç»“æ„å®šä¹‰ï¼Œä¸ºäº†å’Œä¸Šé¢çš„å˜é‡åŒºåˆ†ï¼Œå˜é‡ç±»å‹å’Œåå­—ååŠ äº†1
+typedef enum { ATOM1, LIST1 } ElemTag1; // 0:åŸå­, 1:å­è¡¨
+typedef struct GLNode1 {
+ElemTag1 tag1; // å…¬å…±éƒ¨åˆ†ï¼Œæ ‡å¿—åŸŸï¼Œç”¨äºåŒºåˆ†åŸå­ç»“ç‚¹å’Œè¡¨ç»“ç‚¹
+union { // åŸå­ç»“ç‚¹å’Œè¡¨ç»“ç‚¹çš„è”åˆéƒ¨åˆ†
+    AtomType atom1; // åŸå­ç»“ç‚¹çš„å€¼åŸŸ
+    struct GLNode1* hp1; // è¡¨ç»“ç‚¹çš„è¡¨å¤´æŒ‡é’ˆ
+};
+struct GLNode1* tp1; //ç›¸å½“äºçº¿æ€§é“¾è¡¨çš„nextï¼ŒæŒ‡å‘ä¸‹ä¸€ä¸ªå…ƒç´ ç»“ç‚¹
+} *GList1; //å¹¿ä¹‰è¡¨ç±»å‹
 
-//9¡¢Ë³ĞòÕ»º¯ÊıÉùÃ÷£¬¹²9¸ö
-Status InitStack9(SqStack& S);               //1¡¢³õÊ¼»¯Ë³ĞòÕ»S
-Status DestroyStack9(SqStack& S);            //2¡¢Ïú»ÙË³ĞòÕ»S
-Status ClearStack9(SqStack S);               //3¡¢Çå¿ÕË³ĞòÕ»S
-Status StackEmpty9(SqStack& S);              //4¡¢ÅĞ¶ÏË³ĞòÕ»SÊÇ·ñÎª¿Õ
-Status StackFull9(SqStack& S);               //5¡¢ÅĞ¶ÏË³ĞòÕ»SÊÇ·ñÒÑÂú
-int StackLength9(SqStack S);                 //6¡¢ÇóË³ĞòÕ»SµÄ³¤¶È
-Status GetTop9(SqStack S, SElemType& e);     //7¡¢»ñÈ¡Õ»¶¥ÔªËØ
-Status Push9(SqStack& S, SElemType e);       //8¡¢ÈëÕ»
-Status Pop9(SqStack& S, SElemType& e);       //9¡¢³öÕ»
+//---------------------------ä»¥ä¸‹å†…å®¹ä¸ºç®—æ³•å‡½æ•°å£°æ˜---------------------------
 
-//10¡¢Á´Õ»º¯ÊıÉùÃ÷£¬¹²5¸ö
-Status InitStack10(LinkStack& S);            //1¡¢³õÊ¼»¯Á´Õ»S
-Status StackEmpty10(LinkStack S);            //2¡¢ÅĞ¶ÏÁ´Õ»SÊÇ·ñÎª¿Õ
-Status GetTop10(LinkStack S, SElemType& e);  //3¡¢»ñÈ¡Õ»¶¥ÔªËØ
-Status Push10(LinkStack& S, SElemType e);    //4¡¢ÈëÕ»
-Status Pop10(LinkStack& S, SElemType& e);    //5¡¢³öÕ»
+//1ã€é™æ€å­˜å‚¨é¡ºåºè¡¨å‡½æ•°å£°æ˜ï¼Œå…±12ä¸ª
+void InitList1(SeqList& L);               //1ã€åˆå§‹åŒ–è¡¨Lä¸ºç©ºè¡¨
+void DestroyList1(SeqList& L);            //2ã€é”€æ¯çº¿æ€§è¡¨L
+void ClearList1(SeqList& L);              //3ã€æ¸…ç©ºçº¿æ€§è¡¨L
+int ListEmpty1(SeqList L);                //4ã€åˆ¤æ–­çº¿æ€§è¡¨Læ˜¯å¦ä¸ºç©º
+int ListLength1(SeqList L);               //5ã€æ±‚çº¿æ€§è¡¨Lçš„é•¿åº¦
+ElemType GetElem1(SeqList L, int i);      //6ã€è·å–è¡¨Lä¸­ç¬¬ i ä¸ªå…ƒç´ 
+int LocateELem1(SeqList L, ElemType e);   //7ã€æŸ¥æ‰¾å€¼ä¸ºeçš„å…ƒç´ ï¼Œè¿”å›å…¶ä½åº
+int IsIn1(SeqList L, ElemType x);         //8ã€åˆ¤æ–­xæ˜¯å¦åœ¨è¡¨Lä¸­
+int NextElem1(SeqList L, ElemType x);     //9ã€æ±‚xçš„ç›´æ¥åç»§
+int PriorElem1(SeqList L, ElemType x);    //10ã€æ±‚xçš„ç›´æ¥å‰é©±
+Status ListInsert1(SeqList& L, int i, ElemType e); //11ã€åœ¨ç¬¬ i ä¸ªå…ƒç´ å‰æ’å…¥å…ƒç´  e
+Status ListDelete1(SeqList& L, int i);    //12ã€åœ¨é¡ºåºè¡¨Lä¸­åˆ é™¤ç¬¬ i ä¸ªå…ƒç´ 
 
-//11¡¢Ñ­»·¶ÓÁĞº¯ÊıÉùÃ÷£¬¹²7¸ö
-Status InitQueue11(SqQueue& Q);               //1¡¢³õÊ¼»¯Ñ­»·¶ÓÁĞQ
-int QueueLength11(SqQueue Q);		          //2¡¢ÇóÑ­»·¶ÓÁĞQµÄ³¤¶È
-int QueueEmpty11(SqQueue& Q);                 //3¡¢ÅĞ¶ÏÑ­»·¶ÓÁĞQÊÇ·ñÎª¿Õ
-int QueueFull11(SqQueue& Q);	              //4¡¢ÅĞ¶ÏÑ­»·¶ÓÁĞQÊÇ·ñÒÑÂú
-Status EnQueue11(SqQueue& Q, QElemType e);    //5¡¢Èë¶Ó
-Status DeQueue11(SqQueue& Q, QElemType& e);   //6¡¢³ö¶Ó
-Status GetFront11(SqQueue& Q, QElemType& e);  //7¡¢»ñÈ¡¶ÓÍ·ÔªËØ
+//2ã€åŠ¨æ€å­˜å‚¨é¡ºåºè¡¨å‡½æ•°å£°æ˜ï¼Œå…±14ä¸ª
+Status InitList2(SqList& L);              //1ã€åˆå§‹åŒ–è¡¨Lä¸ºç©ºè¡¨
+Status DestroyList2(SqList& L);           //2ã€é”€æ¯çº¿æ€§è¡¨L
+Status ClearList2(SqList& L);             //3ã€æ¸…ç©ºçº¿æ€§è¡¨L
+int ListEmpty2(SqList L);                 //4ã€åˆ¤æ–­çº¿æ€§è¡¨Læ˜¯å¦ä¸ºç©º
+int ListLength2(SqList L);                //5ã€æ±‚çº¿æ€§è¡¨Lçš„é•¿åº¦
+ElemType GetElem2(SqList L, int i);       //6ã€è·å–è¡¨Lä¸­ç¬¬ i ä¸ªå…ƒç´ 
+int LocateElem2(SqList L, ElemType x);    //7ã€æŸ¥æ‰¾å€¼ä¸ºxçš„å…ƒç´ ï¼Œè¿”å›å…¶ä½åº
+int IsIn2(SqList L, ElemType x);          //8ã€åˆ¤æ–­xæ˜¯å¦åœ¨è¡¨Lä¸­
+int NextElem2(SqList L, ElemType x);      //9ã€æ±‚xçš„ç›´æ¥åç»§
+int PriorElem2(SqList L, ElemType x);     //10ã€æ±‚xçš„ç›´æ¥å‰é©±
+Status ListInsert2(SqList& L, int i, ElemType e); //11ã€åœ¨ç¬¬ i ä¸ªå…ƒç´ å‰æ’å…¥å…ƒç´  e
+Status ListDelete2(SqList& L, int i);     //12ã€åœ¨é¡ºåºè¡¨Lä¸­åˆ é™¤ç¬¬ i ä¸ªå…ƒç´ 
+void Union2(SqList& A, SqList B);         //13ã€é›†åˆçš„â€œå¹¶â€æ“ä½œ
+void Intersection2(SqList& A, SqList B);  //14ã€é›†åˆçš„â€œäº¤â€æ“ä½œ
 
-//12¡¢Á´Ê½¶ÓÁĞº¯ÊıÉùÃ÷£¬¹²6¸ö
-Status InitQueue12(LinkQueue& Q);		      //1¡¢³õÊ¼»¯Á´Ê½¶ÓÁĞQ
-Status DestroyQueue12(LinkQueue& Q);	      //2¡¢Ïú»ÙÁ´Ê½¶ÓÁĞQ
-int isEmpty12(LinkQueue Q);		              //3¡¢ÅĞ¶ÏÁ´Ê½¶ÓÁĞQÊÇ·ñÎª¿Õ
-int GetFront12(LinkQueue Q, QElemType& e);    //4¡¢»ñÈ¡¶ÓÍ·ÔªËØ
-Status EnQueue12(LinkQueue& Q, QElemType e);  //5¡¢Èë¶Ó
-Status DeQueue12(LinkQueue& Q, QElemType& e); //6¡¢³ö¶Ó
+//3ã€ä¸å¸¦å¤´ç»“ç‚¹çš„å•é“¾è¡¨å‡½æ•°å£°æ˜ï¼Œå…±12ä¸ª
+void InitList3(LinkList& first);          //1ã€åˆå§‹åŒ–å•é“¾è¡¨firstä¸ºç©ºè¡¨
+void DestroyList3(LinkList& first);       //2ã€é”€æ¯å•é“¾è¡¨
+void clear3(LinkList& first);             //3ã€æ¸…ç©ºå•é“¾è¡¨
+int ListEmpty3(LinkList first);           //4ã€åˆ¤æ–­å•é“¾è¡¨æ˜¯å¦ä¸ºç©º
+int ListLength3(LinkList first);          //5ã€æ±‚å•é“¾è¡¨çš„é•¿åº¦
+ElemType GetElem3(LinkList first, int i); //6ã€è·å–å•é“¾è¡¨ä¸­ç¬¬iä¸ªå…ƒç´ 
+LinkList LocateElem3(LinkList first, ElemType x); //7ã€æŸ¥æ‰¾å€¼ä¸ºxçš„å…ƒç´ ï¼Œè¿”å›æŒ‡é’ˆ
+int IsIn3(LinkList first, ElemType x); //8ã€åˆ¤æ–­xæ˜¯å¦åœ¨å•é“¾è¡¨ä¸­
+LinkList NextElem3(LinkList first, ElemType x);   //9ã€æ±‚xçš„ç›´æ¥åç»§
+LinkList PriorElem3(LinkList first, ElemType x);  //10ã€æ±‚xçš„ç›´æ¥å‰é©±
+Status ListInsert3(LinkList& first, int i, ElemType x); //11ã€åœ¨ç¬¬ i ä¸ªå…ƒç´ å‰æ’å…¥å…ƒç´  x
+Status ListDelete3(LinkList& first, int i);  //12ã€åˆ é™¤ç¬¬ i ä¸ªå…ƒç´ 
+
+//4ã€å¸¦å¤´ç»“ç‚¹çš„å•é“¾è¡¨å‡½æ•°å£°æ˜ï¼Œå…±15ä¸ª
+void InitList4(LinkList& first);           //1ã€åˆå§‹åŒ–å¸¦å¤´ç»“ç‚¹å•é“¾è¡¨firstä¸ºç©ºè¡¨
+void DestroyList4(LinkList& first);        //2ã€é”€æ¯å¸¦å¤´ç»“ç‚¹å•é“¾è¡¨
+void clear4(LinkList& first);              //3ã€æ¸…ç©ºå¸¦å¤´ç»“ç‚¹å•é“¾è¡¨
+int ListEmpty4(LinkList first);            //4ã€åˆ¤æ–­å¸¦å¤´ç»“ç‚¹å•é“¾è¡¨æ˜¯å¦ä¸ºç©º
+int ListLength4(LinkList first);           //5ã€æ±‚å¸¦å¤´ç»“ç‚¹å•é“¾è¡¨çš„é•¿åº¦
+ElemType GetElem4(LinkList first, int i);  //6ã€è·å–å¸¦å¤´ç»“ç‚¹å•é“¾è¡¨ä¸­ç¬¬iä¸ªå…ƒç´ 
+LNode* LocateElem4(LinkList first, ElemType x);  //7ã€æŸ¥æ‰¾å€¼ä¸ºxçš„å…ƒç´ ï¼Œè¿”å›æŒ‡é’ˆ
+int LocateELem_L4(LinkList first, ElemType x);   //8ã€æŸ¥æ‰¾å€¼ä¸ºxçš„å…ƒç´ ï¼Œè¿”å›ä½ç½®åºå·
+int IsIn4(LinkList first, ElemType x);    //9ã€åˆ¤æ–­xæ˜¯å¦åœ¨å¸¦å¤´ç»“ç‚¹å•é“¾è¡¨ä¸­
+LinkList NextElem4(LinkList first, ElemType x);  //10ã€æ±‚xçš„ç›´æ¥åç»§
+LinkList PriorElem4(LinkList first, ElemType x); //11ã€æ±‚xçš„ç›´æ¥å‰é©±
+Status ListInsert4(LinkList first, int i, ElemType x);  //12ã€åœ¨ç¬¬ i ä¸ªå…ƒç´ å‰æ’å…¥å…ƒç´  x
+Status ListDelete4(LinkList first, int i); //13ã€åˆ é™¤ç¬¬ i ä¸ªå…ƒç´ 
+LinkList createListF4(void);               //14ã€å¤´æ’æ³•åˆ›å»ºå¸¦å¤´ç»“ç‚¹å•é“¾è¡¨ï¼Œæ–°å¢çš„å…ƒç´ æ’å…¥åˆ°å¤´éƒ¨ï¼Œå³æŒ‰ç”¨æˆ·è¾“å…¥æ•°æ®çš„ç›¸åé¡ºåºå­˜å‚¨
+LinkList createListR4(void);               //15ã€å°¾æ’æ³•åˆ›å»ºå¸¦å¤´ç»“ç‚¹å•é“¾è¡¨ï¼Œæ–°å¢çš„å…ƒç´ æ’å…¥åˆ°å°¾éƒ¨ï¼Œå³æŒ‰ç”¨æˆ·è¾“å…¥æ•°æ®çš„é¡ºåºå­˜å‚¨
+
+//5ã€é™æ€é“¾è¡¨å‡½æ•°å£°æ˜ï¼Œå…±13ä¸ª
+int Malloc5(SLinkList space);              //1ã€åˆ†é…é™æ€é“¾è¡¨ç»“ç‚¹
+void Free5(SLinkList space, int k);        //2ã€å›æ”¶ç»“ç‚¹k
+void InitList5(SLinkList L);               //3ã€åˆå§‹åŒ–é™æ€é“¾è¡¨L
+void ClearList5(SLinkList L);              //4ã€æ¸…ç©ºé™æ€é“¾è¡¨L
+Status ListEmpty5(SLinkList L);            //5ã€åˆ¤æ–­é™æ€é“¾è¡¨Læ˜¯å¦ä¸ºç©º
+int ListLength5(SLinkList L);              //6ã€æ±‚é™æ€é“¾è¡¨Lçš„é•¿åº¦
+Status GetElem5(SLinkList L, int i, ElemType& e);  //7ã€è·å–é™æ€é“¾è¡¨Lä¸­ç¬¬iä¸ªå…ƒç´ 
+int LocateElem5(SLinkList L, ElemType e);  //8ã€æŸ¥æ‰¾å€¼ä¸ºeçš„å…ƒç´ ï¼Œè¿”å›å…¶ä½åº
+Status NextElem5(SLinkList L, ElemType cur_e, ElemType& next_e);   //9ã€æŸ¥æ‰¾å€¼ä¸ºcur_eçš„å…ƒç´ ï¼Œè¿”å›å®ƒçš„ç›´æ¥åç»§
+Status PriorElem5(SLinkList L, ElemType cur_e, ElemType& pre_e);   //10ã€æŸ¥æ‰¾å€¼ä¸ºcur_eçš„å…ƒç´ ï¼Œè¿”å›å®ƒçš„ç›´æ¥å‰é©±
+Status ListInsert5(SLinkList L, int i, ElemType e);   //11ã€åœ¨é™æ€é“¾è¡¨Lä¸­ç¬¬iä¸ªå…ƒç´ å‰æ’å…¥å…ƒç´ e
+Status ListDelete5(SLinkList L, int i, ElemType& e);  //12ã€åœ¨é™æ€é“¾è¡¨Lä¸­åˆ é™¤ç¬¬iä¸ªå…ƒç´ 
+void ListTraverse5(SLinkList L, void(*visit)(ElemType)); //13ã€éå†é™æ€é“¾è¡¨Lä¸­çš„å…ƒç´ ï¼Œvisitä¸ºå‡½æ•°æŒ‡é’ˆï¼ŒæŒ‡å‘æ‰“å°å‡½æ•°
+
+//6ã€å¸¦å¤´ç»“ç‚¹çš„ä½¿ç”¨å°¾æŒ‡é’ˆçš„å•å¾ªç¯é“¾è¡¨å‡½æ•°å£°æ˜ï¼Œå…±12ä¸ª
+void InitList6(LinkList& L);            //1ã€åˆå§‹åŒ–å¸¦å¤´ç»“ç‚¹çš„ä½¿ç”¨å°¾æŒ‡é’ˆçš„å•å¾ªç¯é“¾è¡¨L
+void DestroyList6(LinkList& L);         //2ã€é”€æ¯å¸¦å¤´ç»“ç‚¹çš„ä½¿ç”¨å°¾æŒ‡é’ˆçš„å•å¾ªç¯é“¾è¡¨
+void ClearList6(LinkList& L);           //3ã€æ¸…ç©ºå¸¦å¤´ç»“ç‚¹çš„ä½¿ç”¨å°¾æŒ‡é’ˆçš„å•å¾ªç¯é“¾è¡¨
+Status ListEmpty6(LinkList L);          //4ã€åˆ¤æ–­å¸¦å¤´ç»“ç‚¹çš„ä½¿ç”¨å°¾æŒ‡é’ˆçš„å•å¾ªç¯é“¾è¡¨æ˜¯å¦ä¸ºç©º
+int ListLength6(LinkList L);            //5ã€æ±‚å¸¦å¤´ç»“ç‚¹çš„ä½¿ç”¨å°¾æŒ‡é’ˆçš„å•å¾ªç¯é“¾è¡¨çš„é•¿åº¦
+Status GetElem6(LinkList L, int i, ElemType& e);   //6ã€è·å–ç¬¬iä¸ªå…ƒç´ 
+int LocateElem6(LinkList L, ElemType e);           //7ã€æŸ¥æ‰¾å€¼ä¸ºeçš„å…ƒç´ ï¼Œè¿”å›ä½ç½®åºå·
+Status NextElem6(LinkList L, ElemType cur_e, ElemType& next_e);  //8ã€æŸ¥æ‰¾å€¼ä¸ºcur_eçš„å…ƒç´ ï¼Œæ±‚å®ƒçš„ç›´æ¥åç»§
+Status PriorElem6(LinkList L, ElemType cur_e, ElemType& pre_e);  //9ã€æŸ¥æ‰¾å€¼ä¸ºcur_eçš„å…ƒç´ ï¼Œæ±‚å®ƒçš„ç›´æ¥å‰é©±
+Status ListInsert6(LinkList& L, int i, ElemType e);              //10ã€åœ¨å¸¦å¤´ç»“ç‚¹çš„ä½¿ç”¨å°¾æŒ‡é’ˆçš„å•å¾ªç¯é“¾è¡¨Lä¸­ç¬¬iä¸ªå…ƒç´ å‰æ’å…¥å…ƒç´ e
+Status ListDelete6(LinkList& L, int i, ElemType& e);             //11ã€åœ¨å¸¦å¤´ç»“ç‚¹çš„ä½¿ç”¨å°¾æŒ‡é’ˆçš„å•å¾ªç¯é“¾è¡¨Lä¸­åˆ é™¤ç¬¬iä¸ªå…ƒç´ 
+void ListTraverse6(LinkList L, void(*visit)(ElemType));          //12ã€éå†å¸¦å¤´ç»“ç‚¹çš„ä½¿ç”¨å°¾æŒ‡é’ˆçš„å•å¾ªç¯é“¾è¡¨Lä¸­çš„å…ƒç´ ï¼Œvisitä¸ºå‡½æ•°æŒ‡é’ˆï¼ŒæŒ‡å‘æ‰“å°å‡½æ•°
+
+//7ã€å¸¦å¤´ç»“ç‚¹çš„åŒå‘é“¾è¡¨å‡½æ•°å£°æ˜ï¼Œå…±8ä¸ª
+void InitList7(DuLinkList& L);        //1ã€åˆå§‹åŒ–å¸¦å¤´ç»“ç‚¹çš„åŒå‘é“¾è¡¨L
+void DestroyList7(DuLinkList& L);     //2ã€é”€æ¯å¸¦å¤´ç»“ç‚¹çš„åŒå‘é“¾è¡¨
+void ClearList7(DuLinkList& L);       //3ã€æ¸…ç©ºå¸¦å¤´ç»“ç‚¹çš„åŒå‘é“¾è¡¨
+int ListLength7(DuLinkList L);        //4ã€æ±‚å¸¦å¤´ç»“ç‚¹çš„åŒå‘é“¾è¡¨çš„é•¿åº¦
+DuLinkList GetElemP7(DuLinkList L, int i);               //5ã€è·å–ç¬¬iä¸ªå…ƒç´ ï¼Œè¿”å›æŒ‡é’ˆ
+Status ListInsertF7(DuLinkList L, int i, ElemType e);   //6ã€åœ¨ç¬¬ i ä¸ªå…ƒç´ ç»“ç‚¹å‰æ’å…¥å…ƒç´  e
+Status ListInsertR7(DuLinkList L, int i, ElemType e);   //7ã€åœ¨ç¬¬ i ä¸ªå…ƒç´ ç»“ç‚¹åæ’å…¥å…ƒç´  e
+Status ListDelete7(DuLinkList L, int i, ElemType& e);   //8ã€åœ¨å¸¦å¤´ç»“ç‚¹çš„åŒå‘é“¾è¡¨Lä¸­åˆ é™¤ç¬¬ i ä¸ªå…ƒç´ 
+
+//8ã€å¸¦å¤´ç»“ç‚¹çš„åŒå‘å¾ªç¯é“¾è¡¨å‡½æ•°å£°æ˜ï¼Œå…±15ä¸ª
+void InitList8(DuLinkList& L);        //1ã€åˆå§‹åŒ–å¸¦å¤´ç»“ç‚¹çš„åŒå‘å¾ªç¯é“¾è¡¨L
+void DestroyList8(DuLinkList& L);     //2ã€é”€æ¯å¸¦å¤´ç»“ç‚¹çš„åŒå‘å¾ªç¯é“¾è¡¨
+void ClearList8(DuLinkList L);        //3ã€æ¸…ç©ºå¸¦å¤´ç»“ç‚¹çš„åŒå‘å¾ªç¯é“¾è¡¨
+Status ListEmpty8(DuLinkList L);      //4ã€åˆ¤æ–­å¸¦å¤´ç»“ç‚¹çš„åŒå‘å¾ªç¯é“¾è¡¨æ˜¯å¦ä¸ºç©º
+int ListLength8(DuLinkList L);        //5ã€æ±‚å¸¦å¤´ç»“ç‚¹çš„åŒå‘å¾ªç¯é“¾è¡¨çš„é•¿åº¦
+Status GetElem8(DuLinkList L, int i, ElemType& e);    //6ã€è·å–ç¬¬iä¸ªå…ƒç´ 
+int LocateElem8(DuLinkList L, ElemType e, Status(*compare)(ElemType, ElemType));  //7ã€æŸ¥æ‰¾å€¼ä¸ºeçš„å…ƒç´ ï¼Œè¿”å›ä½ç½®åºå·
+Status NextElem8(DuLinkList L, ElemType cur_e, ElemType& next_e);                 //8ã€æŸ¥æ‰¾å€¼ä¸ºcur_eçš„å…ƒç´ ï¼Œæ±‚å®ƒçš„ç›´æ¥åç»§
+Status PriorElem8(DuLinkList L, ElemType cur_e, ElemType& pre_e);                 //9ã€æŸ¥æ‰¾å€¼ä¸ºcur_eçš„å…ƒç´ ï¼Œæ±‚å®ƒçš„ç›´æ¥å‰é©±
+DuLinkList GetElemP8(DuLinkList L, int i);                      //10ã€è·å–ç¬¬iä¸ªå…ƒç´ ï¼Œè¿”å›æŒ‡é’ˆ
+Status ListInsertF8(DuLinkList L, int i, ElemType e);           //11ã€åœ¨ç¬¬ i ä¸ªå…ƒç´ ç»“ç‚¹å‰æ’å…¥å…ƒç´  e
+Status ListInsertR8(DuLinkList L, int i, ElemType e);           //12ã€åœ¨ç¬¬ i ä¸ªå…ƒç´ ç»“ç‚¹åæ’å…¥å…ƒç´  e
+Status ListDelete8(DuLinkList L, int i, ElemType& e);           //13ã€åœ¨å¸¦å¤´ç»“ç‚¹çš„åŒå‘å¾ªç¯é“¾è¡¨Lä¸­åˆ é™¤ç¬¬ i ä¸ªå…ƒç´ 
+void ListTraverse8(DuLinkList L, void(*visit)(ElemType));       //14ã€æ­£å‘éå†å¸¦å¤´ç»“ç‚¹çš„åŒå‘å¾ªç¯é“¾è¡¨Lä¸­çš„å…ƒç´ ï¼Œvisitä¸ºå‡½æ•°æŒ‡é’ˆï¼ŒæŒ‡å‘æ‰“å°å‡½æ•°
+void ListTraverseBack8(DuLinkList L, void(*visit)(ElemType));   //15ã€åå‘éå†å¸¦å¤´ç»“ç‚¹çš„åŒå‘å¾ªç¯é“¾è¡¨Lä¸­çš„å…ƒç´ ï¼Œvisitä¸ºå‡½æ•°æŒ‡é’ˆï¼ŒæŒ‡å‘æ‰“å°å‡½æ•°
+
+//9ã€é¡ºåºæ ˆå‡½æ•°å£°æ˜ï¼Œå…±9ä¸ª
+Status InitStack9(SqStack& S);               //1ã€åˆå§‹åŒ–é¡ºåºæ ˆS
+Status DestroyStack9(SqStack& S);            //2ã€é”€æ¯é¡ºåºæ ˆS
+Status ClearStack9(SqStack S);               //3ã€æ¸…ç©ºé¡ºåºæ ˆS
+Status StackEmpty9(SqStack& S);              //4ã€åˆ¤æ–­é¡ºåºæ ˆSæ˜¯å¦ä¸ºç©º
+Status StackFull9(SqStack& S);               //5ã€åˆ¤æ–­é¡ºåºæ ˆSæ˜¯å¦å·²æ»¡
+int StackLength9(SqStack S);                 //6ã€æ±‚é¡ºåºæ ˆSçš„é•¿åº¦
+Status GetTop9(SqStack S, SElemType& e);     //7ã€è·å–æ ˆé¡¶å…ƒç´ 
+Status Push9(SqStack& S, SElemType e);       //8ã€å…¥æ ˆ
+Status Pop9(SqStack& S, SElemType& e);       //9ã€å‡ºæ ˆ
+
+//10ã€é“¾æ ˆå‡½æ•°å£°æ˜ï¼Œå…±5ä¸ª
+Status InitStack10(LinkStack& S);            //1ã€åˆå§‹åŒ–é“¾æ ˆS
+Status StackEmpty10(LinkStack S);            //2ã€åˆ¤æ–­é“¾æ ˆSæ˜¯å¦ä¸ºç©º
+Status GetTop10(LinkStack S, SElemType& e);  //3ã€è·å–æ ˆé¡¶å…ƒç´ 
+Status Push10(LinkStack& S, SElemType e);    //4ã€å…¥æ ˆ
+Status Pop10(LinkStack& S, SElemType& e);    //5ã€å‡ºæ ˆ
+
+//11ã€å¾ªç¯é˜Ÿåˆ—å‡½æ•°å£°æ˜ï¼Œå…±7ä¸ª
+Status InitQueue11(SqQueue& Q);               //1ã€åˆå§‹åŒ–å¾ªç¯é˜Ÿåˆ—Q
+int QueueLength11(SqQueue Q);		          //2ã€æ±‚å¾ªç¯é˜Ÿåˆ—Qçš„é•¿åº¦
+int QueueEmpty11(SqQueue& Q);                 //3ã€åˆ¤æ–­å¾ªç¯é˜Ÿåˆ—Qæ˜¯å¦ä¸ºç©º
+int QueueFull11(SqQueue& Q);	              //4ã€åˆ¤æ–­å¾ªç¯é˜Ÿåˆ—Qæ˜¯å¦å·²æ»¡
+Status EnQueue11(SqQueue& Q, QElemType e);    //5ã€å…¥é˜Ÿ
+Status DeQueue11(SqQueue& Q, QElemType& e);   //6ã€å‡ºé˜Ÿ
+Status GetFront11(SqQueue& Q, QElemType& e);  //7ã€è·å–é˜Ÿå¤´å…ƒç´ 
+
+//12ã€é“¾å¼é˜Ÿåˆ—å‡½æ•°å£°æ˜ï¼Œå…±6ä¸ª
+Status InitQueue12(LinkQueue& Q);		      //1ã€åˆå§‹åŒ–é“¾å¼é˜Ÿåˆ—Q
+Status DestroyQueue12(LinkQueue& Q);	      //2ã€é”€æ¯é“¾å¼é˜Ÿåˆ—Q
+int isEmpty12(LinkQueue Q);		              //3ã€åˆ¤æ–­é“¾å¼é˜Ÿåˆ—Qæ˜¯å¦ä¸ºç©º
+int GetFront12(LinkQueue Q, QElemType& e);    //4ã€è·å–é˜Ÿå¤´å…ƒç´ 
+Status EnQueue12(LinkQueue& Q, QElemType e);  //5ã€å…¥é˜Ÿ
+Status DeQueue12(LinkQueue& Q, QElemType& e); //6ã€å‡ºé˜Ÿ
+
+//13ã€æ•°ç»„å‡½æ•°å£°æ˜ï¼Œå…±5ä¸ª
+Status InitArray13(Array& A, int dim, ...);       //1ã€åˆå§‹åŒ–æ•°ç»„A
+Status DestroyArray13(Array& A);                  //2ã€é”€æ¯æ•°ç»„A
+Status Locate13(Array A, va_list ap, int& off);   //3ã€æ±‚å…ƒç´ åœ¨æ•°ç»„ä¸­ç›¸å¯¹åœ°å€
+Status Value13(Array A, ElemType& e,...);         //4ã€Açš„å…ƒç´ å€¼èµ‹ç»™å˜é‡e
+Status Assign13(Array& A, ElemType e,...);        //5ã€å˜é‡eçš„å€¼èµ‹ç»™æ‰€æŒ‡å®šçš„Açš„å…ƒç´ 
+
+//14ã€ç¨€ç–çŸ©é˜µçš„ä¸‰å…ƒç»„å­˜å‚¨å‡½æ•°å£°æ˜ï¼Œå…±2ä¸ª
+Status TransposeSMatrix14(TSMatrix M, TSMatrix& T);    //1ã€çŸ©é˜µè½¬ç½®
+void FastTransposeSMatrix14(TSMatrix M, TSMatrix& T);  //2ã€å¿«é€Ÿè½¬ç½®
+
+//15ã€ç¨€ç–çŸ©é˜µçš„åå­—é“¾è¡¨å­˜å‚¨å‡½æ•°å£°æ˜ï¼Œå…±1ä¸ª
+Status CreateSMatrix_OL15(CrossList& M);               //1ã€åˆ›å»ºåå­—é“¾è¡¨
+
+//16ã€å¹¿ä¹‰è¡¨çš„å¤´å°¾é“¾è¡¨å­˜å‚¨å‡½æ•°å£°æ˜ï¼Œå…±3ä¸ª
+int GListDepth16(GList L);          //1ã€æ±‚å¹¿ä¹‰è¡¨Lçš„æ·±åº¦
+int GListLength16(GList L);         //2ã€æ±‚å¹¿ä¹‰è¡¨Lçš„é•¿åº¦
+int LengthRecur16(GLNode* GL);      //3ã€æ±‚å¹¿ä¹‰è¡¨Lçš„é•¿åº¦ï¼ˆé€’å½’ç‰ˆï¼‰
 
 Status compare (ElemType a, ElemType b);
 
-//---------------------------ÒÔÏÂÄÚÈİÎª´òÓ¡º¯ÊıÉùÃ÷---------------------------
+//---------------------------ä»¥ä¸‹å†…å®¹ä¸ºæ‰“å°å‡½æ•°å£°æ˜---------------------------
 void visit(ElemType e);
-void printList1(SeqList L);        //1¡¢´òÓ¡¾²Ì¬´æ´¢Ë³Ğò±í
-void printList2(SqList L);         //2¡¢´òÓ¡¶¯Ì¬´æ´¢Ë³Ğò±í
-void printList3(LinkList first);   //3¡¢´òÓ¡²»´øÍ·½áµãµ¥Á´±í
-void printList4(LinkList first);   //4¡¢´òÓ¡´øÍ·½áµãµ¥Á´±í
-                                   //5¡¢´òÓ¡¾²Ì¬Á´±íÒÑÔÚListTraverse5º¯ÊıÖĞÊµÏÖ£¬ÔÚÉÏ·½ÉùÃ÷
-                                   //6¡¢´òÓ¡´øÍ·½áµãµÄÊ¹ÓÃÎ²Ö¸ÕëµÄµ¥Ñ­»·Á´±íÒÑÔÚListTraverse6º¯ÊıÖĞÊµÏÖ£¬ÔÚÉÏ·½ÉùÃ÷
-void printList7(DuLinkList L);     //7¡¢´òÓ¡´øÍ·½áµãµÄË«ÏòÁ´±í
-                                   //8¡¢´òÓ¡´øÍ·½áµãµÄË«ÏòÑ­»·Á´±íÒÑÔÚListTraverse8º¯ÊıÖĞÊµÏÖ£¬ÔÚÉÏ·½ÉùÃ÷
-void printStack9(SqStack S);       //9¡¢´òÓ¡Ë³ĞòÕ»
-void printStack10(LinkStack S);    //10¡¢´òÓ¡Á´Õ»
-void printQueue11(SqQueue Q);      //11¡¢´òÓ¡Ñ­»·¶ÓÁĞ
-void printQueue12(LinkQueue Q);    //12¡¢´òÓ¡Á´Ê½¶ÓÁĞ
+void printList1(SeqList L);        //1ã€æ‰“å°é™æ€å­˜å‚¨é¡ºåºè¡¨
+void printList2(SqList L);         //2ã€æ‰“å°åŠ¨æ€å­˜å‚¨é¡ºåºè¡¨
+void printList3(LinkList first);   //3ã€æ‰“å°ä¸å¸¦å¤´ç»“ç‚¹å•é“¾è¡¨
+void printList4(LinkList first);   //4ã€æ‰“å°å¸¦å¤´ç»“ç‚¹å•é“¾è¡¨
+                                   //5ã€æ‰“å°é™æ€é“¾è¡¨å·²åœ¨ListTraverse5å‡½æ•°ä¸­å®ç°ï¼Œåœ¨ä¸Šæ–¹å£°æ˜
+                                   //6ã€æ‰“å°å¸¦å¤´ç»“ç‚¹çš„ä½¿ç”¨å°¾æŒ‡é’ˆçš„å•å¾ªç¯é“¾è¡¨å·²åœ¨ListTraverse6å‡½æ•°ä¸­å®ç°ï¼Œåœ¨ä¸Šæ–¹å£°æ˜
+void printList7(DuLinkList L);     //7ã€æ‰“å°å¸¦å¤´ç»“ç‚¹çš„åŒå‘é“¾è¡¨
+                                   //8ã€æ‰“å°å¸¦å¤´ç»“ç‚¹çš„åŒå‘å¾ªç¯é“¾è¡¨å·²åœ¨ListTraverse8å‡½æ•°ä¸­å®ç°ï¼Œåœ¨ä¸Šæ–¹å£°æ˜
+void printStack9(SqStack S);       //9ã€æ‰“å°é¡ºåºæ ˆ
+void printStack10(LinkStack S);    //10ã€æ‰“å°é“¾æ ˆ
+void printQueue11(SqQueue Q);      //11ã€æ‰“å°å¾ªç¯é˜Ÿåˆ—
+void printQueue12(LinkQueue Q);    //12ã€æ‰“å°é“¾å¼é˜Ÿåˆ—
+void printArray13(Array A);        //13ã€æ‰“å°æ•°ç»„
+void printMatrix14(TSMatrix M);    //14ã€æ‰“å°ç¨€ç–çŸ©é˜µçš„ä¸‰å…ƒç»„å­˜å‚¨ç»“æ„
+void printMatrix15(CrossList M);   //15ã€æ‰“å°ç¨€ç–çŸ©é˜µçš„åå­—é“¾è¡¨å­˜å‚¨ç»“æ„
+void printGList16(GList L);        //16ã€æ‰“å°å¹¿ä¹‰è¡¨çš„å¤´å°¾é“¾è¡¨å­˜å‚¨ç»“æ„
 #endif
